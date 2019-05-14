@@ -21,6 +21,15 @@
     <ClInclude Include="customer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="customerDataLL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TravelPack.cpp">
@@ -32,5 +41,18 @@
     <ClCompile Include="customer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="customerDataLL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TravelPackage.txt" />
+    <Text Include="TravelerData.txt" />
   </ItemGroup>
 </Project>

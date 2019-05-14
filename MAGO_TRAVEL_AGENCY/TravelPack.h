@@ -2,37 +2,41 @@
 #include <iostream>
 #include <vector>
 #include "customer.h"
+#include "customerDataLL.h"
 using namespace std;
 
 class TravelPack
 {
-public:
-	static int increment;
+private:
 	string code;
 	string packName;
-	int date; //year-month-date
+	string date; //year-month-date
 	int price;
 	int availability;
-	vector <customer> traveler;
+	customerDataLL traveler;
+	
 	string description;
 
 
 public:
+	void setCode(string c);
 	void setPackName(string name);
 	void setPrice(int price);
 	void setAvailability(int availability);
 	void setDescription(string description);
 	void addDescription(string description);
 	void addCustomer(customer c);
-	void setDate(int date);
-	string getCode() const;
+	void setDate(string date);
+	string getCode();
 	string getPackName()const;
-	int getDate()const;
+	string getDate()const;
+	int getIntDate();
 	int getPrice()const;
 	int getAvailability()const;
+	customerDataLL getTraveler();
 	string getDescription()const;
 	TravelPack();
-	TravelPack(string packName,int price,int availability);
+	TravelPack(string code,string packName,int price,string date,int availability);
 	~TravelPack();
 };
 

@@ -116,12 +116,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="customer.h" />
+    <ClInclude Include="customerDataLL.h" />
+    <ClInclude Include="FunctionController.h" />
     <ClInclude Include="TravelPack.h" />
+    <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="customer.cpp" />
+    <ClCompile Include="customerDataLL.cpp" />
+    <ClCompile Include="FunctionController.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TravelPack.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TravelerData.txt" />
+    <Text Include="TravelPackage.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
