@@ -25,6 +25,7 @@ public:
 	const Node* itterate;
 	customerDataLL();
 	~customerDataLL();
+	void empty();
 	void AddNewCustomer(customer addNew);
 	void moveItterate();
 	void displayAll();
@@ -33,3 +34,5 @@ public:
 
 };
 
+
+#include"customerDataLL.cpp"

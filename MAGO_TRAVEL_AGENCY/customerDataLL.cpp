@@ -1,7 +1,6 @@
 #include "customerDataLL.h"
 
 
-
 customerDataLL::customerDataLL()
 {
 	head = NULL;
@@ -57,4 +56,12 @@ void customerDataLL::deleteCustomer()
 void customerDataLL::search()
 {
 
+}
+
+void customerDataLL::empty()
+{
+    head=NULL;
+    tail=NULL;
+    current = NULL;
+	itterate = head;
 }

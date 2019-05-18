@@ -1,7 +1,6 @@
 #include "customer.h"
 
 
-
 customer::customer()
 {
 	firstname = "";

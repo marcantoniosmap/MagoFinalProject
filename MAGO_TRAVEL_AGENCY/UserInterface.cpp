@@ -17,7 +17,7 @@ void UserInterface::mainMenu() {
 		if (y == 1) {
 			//search();
 		}
-		else if (y == 20) {
+		else if (y == 2) {
 			//book();
 		}
 	}
@@ -25,19 +25,7 @@ void UserInterface::mainMenu() {
 		//checkStatus();
 	}
 	else if (x == 3) {
-		cout << "[1].Add" << endl;
-		cout << "[2].Edit" << endl;
-		cout << "[3].Delete" << endl;
-		cin >> y;
-		if (y == 1) {
-			//addItem();
-		}
-		else if (y == 2) {
-			//editItem();
-		}
-		else if (y == 3) {
-		//	deleteItem();
-		}
+		addEditDelete();
 	}
 
 }

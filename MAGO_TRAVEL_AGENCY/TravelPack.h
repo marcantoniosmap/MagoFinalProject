@@ -27,6 +27,7 @@ public:
 	void addDescription(string description);
 	void addCustomer(customer c);
 	void setDate(string date);
+	void initializeT();
 	string getCode();
 	string getPackName()const;
 	string getDate()const;
@@ -39,5 +40,4 @@ public:
 	TravelPack(string code,string packName,int price,string date,int availability);
 	~TravelPack();
 };
-
-
+#include"TravelPack.cpp"

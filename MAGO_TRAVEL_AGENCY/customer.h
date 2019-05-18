@@ -5,6 +5,7 @@
 using namespace std;
 class customer
 {
+private:
 	string TravelCode;
 	string firstname;
 	string surname;
@@ -34,4 +35,7 @@ public:
 	bool getPaid()const;
 	~customer();
 };
+
+#include"customer.cpp"
+
 

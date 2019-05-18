@@ -1,6 +1,5 @@
 #include "TravelPack.h"
 
-
 //Constructor
 TravelPack::TravelPack()
 {
@@ -51,6 +50,10 @@ void TravelPack::setDate(string date)
 {
 	this->date = date;
 }
+void TravelPack::initializeT()
+{
+	this->traveler.empty();
+}
 string TravelPack::getCode()
 {
 	return code;
@@ -59,6 +62,8 @@ string TravelPack::getPackName()const
 {
 	return packName;
 }
+
+
 string TravelPack::getDate()const
 {
 	return date;
