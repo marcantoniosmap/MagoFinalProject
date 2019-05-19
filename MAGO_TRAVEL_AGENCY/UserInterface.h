@@ -5,8 +5,8 @@
 class UserInterface
 {
 private:
-	TravelPack TP;
-	FunctionController FC;
+	//don't create another instace here.
+	FunctionController functionController;
 public:
 
 	void mainMenu();
@@ -47,12 +47,14 @@ public:
 	void add(){
 		string date,packName,packCode;
 		int option,numDate,index,price,availability;
+		//every time ada menu, give a heading yang memperjelas ini di menu apa, and an option to balik to main menu
+		//good work man
 		cout<<"[1]. Add from the existing package."<<endl;
 		cout<<"[2]. Add new package."<<endl;
 		cin>> option;
 		if(option == 1){
-			for(int i = 0 ; i< FC.TravelPackData.size();i++){
-				cout<<FC.TravelPackData[i].getCode() <<FC.TravelPackData[i].getPackName()<<endl;
+			for(int i = 0 ; i< functionController.TravelPackData.size();i++){
+				cout<< functionController.TravelPackData[i].getCode() << functionController.TravelPackData[i].getPackName()<<endl;
 			}
 
 			cout<<"Input index"<<endl;
@@ -64,29 +66,35 @@ public:
 				for(int i = 0 ; i < numDate;i++){
 				cout<<"Input date:"<<endl;
 				cin>> date;
-				TravelPack n=FC.TravelPackData[index];
+				TravelPack n= functionController.TravelPackData[index];
 				n.setDate(date) ;
 				
 				}
 		}
 		else if (option == 2)
 		{
+			
+			//rapihin and give more guide (berapa character and validation)
+			//use getline(cin,packName) instead, cus bisa kasih space
+			//i think pake while loop "Number of date" kaya yang diatas juga perlu, cus pas mau bikin
+			// mau tau juga berapa banyak yang dia mau,
+
 			cout<<"input package code"<<endl;
 			cin>>packCode;
+			//give the user the freedom to choose mereka pilih code sendiri atau kita aja yang nentuin.
 			cout<<"Input package name"<<endl;
 			cin>>packName;
 			cout<<"Input package price"<<endl;
 			cin>>price;
 			cout<<"Input package date"<<endl;
 			cin>>date;
+			//instead tanya date nya satu per satu and validasiin valid gak 
 			cout<<"Input package availability"<<endl;
 			cin>>availability;
-			TP.setCode(packCode);
-			TP.setPackName(packName);
-			TP.setPrice(price);
-			TP.setDate(date);
-			TP.setAvailability(availability);
-			FC.addNewItem(TP);
+			
+			//cout something that tells the user (udah ke add loh)
+			//and maybe tampilin lagi, "are u sure u want to create blabla)
+			functionController.addNewItem(TravelPack(packCode,packName,price,date,availability));
 		}
 		
 	}
