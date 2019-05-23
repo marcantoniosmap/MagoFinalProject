@@ -19,6 +19,12 @@ private:
 
 
 public:
+	TravelPack(const TravelPack&copy){
+		this->packName = copy.packName;
+		this->availability = copy.availability;
+		this->description = copy.description;
+		this->price = copy.price;
+	}
 	void setCode(string c);
 	void setPackName(string name);
 	void setPrice(int price);

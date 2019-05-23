@@ -1,2 +1,2 @@
-AEE31052019 All_European_Express 30000000 31052019 30
-AEE06062019 All_European_Express 30000000 31052019 30
+ All_European_Express 30000000  30
+ All_European_Express 30000000  30

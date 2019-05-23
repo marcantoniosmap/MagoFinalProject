@@ -25,7 +25,7 @@ void UserInterface::mainMenu() {
 			}
 		}
 		else if (x == 2) {
-			//checkStatus();
+			checkStatus();
 		}
 		else if (x == 3) {
 			addEditDelete();
