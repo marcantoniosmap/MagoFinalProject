@@ -90,6 +90,7 @@ string TravelPack::getDescription()const
 {
 	return description;
 }
+
 //Destructor
 TravelPack::~TravelPack()
 {

@@ -36,6 +36,4 @@ public:
 	~customer();
 };
 
-#include"customer.cpp"
-
 

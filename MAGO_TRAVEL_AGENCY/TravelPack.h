@@ -46,4 +46,3 @@ public:
 	TravelPack(string code,string packName,int price,string date,int availability);
 	~TravelPack();
 };
-#include"TravelPack.cpp"
