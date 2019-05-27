@@ -18,10 +18,10 @@ void UserInterface::mainMenu() {
 			cout << "[2].Book" << endl;
 			cin >> y;
 			if (y == 1) {
-				//search();
+				search();
 			}
 			else if (y == 2) {
-				//book();
+				book();
 			}
 		}
 		else if (x == 2) {

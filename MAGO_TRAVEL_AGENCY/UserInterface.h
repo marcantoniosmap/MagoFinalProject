@@ -2,51 +2,105 @@
 #include <iomanip>
 #include <string>
 #include "FunctionController.h"
+#include "customerDataLL.h"
 
 class UserInterface
 {
 private:
-	//don't create another instace here.
+	//don't create another instance here.
 	FunctionController functionController;
+	//I'm sorry man, im just gonna try.
+	customerDataLL customerLL;
 public:
 
 	void mainMenu();
 
-	// void search() {
+	void book(){
+		string packCode,surName,firstName,citizenship,packName;
+		int age,numPeople;
+		for(int i = 0 ; i < functionController.TravelPackData.size();i++){
+			cout<<functionController.TravelPackData[i].getCode()<<functionController.TravelPackData[i].getPackName()<<functionController.TravelPackData[i].getDate()<<endl;
+		}
+		cout<<"Which package do you wish to book."<<endl;
+		cin>>packName;
 
-	// }
-	// void book(){
-	// 	string packageName,firstName,surname,citizenship;
-	// 	int age,peopleCount;
-	// 	cout<<"Input package name."<<endl;
-	// 	cin>>packageName;
-	// 	for(int i = 0 ; i< FC.TravelPackData.size() ;i++){
-	// 		if(packageName == FC.TravelPackData[i].getCode());
-	// 			cout<<"Input for how many people."<<endl;
-	// 			cin>> peopleCount;
-	// 			for(int i = 0 ; i< peopleCount;i++){
-	// 				cout<<"Input first Name:"<<endl;
-	// 				cin>> firstName;
-	// 				customer.setFirstName(firstName);
-	// 				cout<<"Input Surname."<<endl;
-	// 				cin>>surname;
-	// 				customer.setSurName(surname);
-	// 				cout<<"Input Age:"<<endl;
-	// 				cin>>age;
-	// 				customer.setAge(age);
-	// 				cout<<"Input Citizenship:"<<endl;
-	// 				cin>>citizenship;
-	// 			}
+		for(int i = 0 ; i < functionController.TravelPackData.size();i++){
+			cout<<"lol"<<endl;
+			if(functionController.TravelPackData[i].getPackName()==packName){
+				cout<<"Input how many people do you wish to book"<<endl;
+				cin>> numPeople;
+
+				for(int j = 0 ; j<numPeople;i++){
+					cout<<"Input Fisrt Name"<<endl;
+					cin>> firstName;
+
+					cout<<"Input Surname."<<endl;
+					cin>>surName;
+
+					cout<<"Input Age"<<endl;
+					cin>>age;
+
+					cout<<"Input citizenship"<<endl;
+					cin>>citizenship;
+
+					customerLL.AddNewCustomer(customer(firstName,surName,age,citizenship));
+				}
+			}
+			else
+			{
+				cout<<"Error Goblog"<<endl;
+			}
+			
+		}
+		cout<<"Your Package has been booked successfully"<<endl;
+		
+	}
+
+	void search() {
+		int option;
+		string packName;
+		cout<<"Input package name"<<endl;
+		cin>> packName;
+		for(int i = 0; i < functionController.TravelPackData.size();i++){
+			cout<<"pusing pala ae"<<endl;
+			if(functionController.TravelPackData[i].getPackName()==packName){
+				cout<< functionController.TravelPackData[i].getPrice()<<endl;
+				cout<< functionController.TravelPackData[i].getAvailability()<<endl;
+				cout<< functionController.TravelPackData[i].getDate()<<endl;
+				cout<< functionController.TravelPackData[i].getPackName()<<endl;
+			}
+			else
+			{
+				cout<<"Invalid Input"<<endl;
+				cout<<endl;
+				cout<<"Would you like to try again?"<<endl;
+				cout<<"Press[1] to retry"<<endl;
+				cout<<"Press[2] to exit"<<endl;
+				cin>>option;
+				if(option == 1){
+					search();
+				}
+				else if (option == 2)
+				{
+					cout<<"lol"<<endl;
+					return;
+				}
+				else
+				{
+					return;
+				}
 				
+				
+			}
+			
+		}
+	}
 
-	// 		}
-	// 	}
-
-	// }
 	void checkStatus(){
 		cout<<"Current Status."<<endl;
 		for(int i= 0 ; i< functionController.TravelPackData.size();i++){
-			cout<< functionController.TravelPackData[i].getPrice()<<functionController.TravelPackData[i].getPackName() <<endl;
+			// cout<<functionController.TravelPackData[i].getCode()<<functionController.TravelPackData[i].getPackName()<<functionController.TravelPackData[i].getPrice()<<functionController.TravelPackData[i].getDate()<<functionController.TravelPackData[i].getAvailability() <<endl;
+			cout<<functionController.TravelPackData[i].getPackName()<<endl;
 		}
 	}
 
@@ -105,8 +159,9 @@ public:
 			cout<<"Input package price"<<endl;
 			cin>>price;
 			cout<<"Input package date"<<endl;
-			getline(cin,date);
 			cin.ignore();
+			getline(cin,date);
+			
 			//instead tanya date nya satu per satu and validasiin valid gak 
 			cout<<"Input package availability"<<endl;
 			cin>>availability;
@@ -139,6 +194,7 @@ public:
 		
 	}
 	void editItem(){
+	
 		string packName, date;
 		int index = 0;
 		int element = 0;
