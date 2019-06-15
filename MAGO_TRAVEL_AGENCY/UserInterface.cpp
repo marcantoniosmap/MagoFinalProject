@@ -6,7 +6,7 @@ void UserInterface::mainMenu() {
 	functionController.readFile();
 	while (true) {
 		cout << "=============================" << endl;
-		cout << "Welcome to Mago... Travellers" << endl;
+		cout << "Welcome to Mago Travel Agent" << endl;
 		cout << "=============================" << endl;
 		cout << "[1] Search and Book package." << endl;
 		cout << "[2] Current Status." << endl;
@@ -18,7 +18,7 @@ void UserInterface::mainMenu() {
 			cout << "[2].Book" << endl;
 			cin >> y;
 			if (y == 1) {
-				//search();
+				cout << functionController.TravelPackData[0].getPackName() << endl;
 			}
 			else if (y == 2) {
 				//book();
@@ -45,19 +45,15 @@ void UserInterface::mainMenu() {
 
 void UserInterface::checkStatus()
 {
-	cout << "Current Status." << endl;
-	for (int i = 0; i < functionController.TravelPackData.size(); i++) {
-		cout << functionController.TravelPackData[i].getPrice() << functionController.TravelPackData[i].getPackName() << endl;
-	}
+	
 }
 
 void UserInterface::add()
 {
-	string date, packName, packCode;
-	int option, numDate, index, price, availability;
-	//every time ada menu, give a heading yang memperjelas ini di menu apa, and an option to balik to main menu
-	//good work man
-
+	string  packName, packCode;
+	int option, numDate, index, price,date, availability;
+	
+	system("CLS");
 	cout << "========================================" << endl;
 	cout << "How do you want to add your new package." << endl;
 	cout << "========================================" << endl;
@@ -65,9 +61,7 @@ void UserInterface::add()
 	cout << "[2]. Add new package." << endl;
 	cin >> option;
 	if (option == 1) {
-		for (int i = 0; i < functionController.TravelPackData.size(); i++) {
-			cout << i << " " << functionController.TravelPackData[i].getCode() << functionController.TravelPackData[i].getPackName() << endl;
-		}
+		functionController.printExistingPack();
 
 		cout << "Input index" << endl;
 		cin >> index;
@@ -107,7 +101,7 @@ void UserInterface::add()
 			cout << "Input package price" << endl;
 			cin >> price;
 			cout << "Input package date" << endl;
-			getline(cin, date);
+			cin >> date;
 			cin.ignore();
 			//instead tanya date nya satu per satu and validasiin valid gak 
 			cout << "Input package availability" << endl;
@@ -146,8 +140,8 @@ void UserInterface::addEditDelete()
 
 void UserInterface::editItem()
 {
-	string packName, date;
-	int index = 0;
+	string packName;
+	int  date,index = 0;
 	int element = 0;
 	cout << "Which package do you wish to edit." << endl;
 	cin >> packName;

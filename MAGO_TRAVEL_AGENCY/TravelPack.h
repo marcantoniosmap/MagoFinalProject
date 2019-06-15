@@ -1,7 +1,5 @@
 #pragma once
 #include <iostream>
-#include <vector>
-#include "customer.h"
 #include "customerDataLL.h"
 using namespace std;
 
@@ -10,21 +8,18 @@ class TravelPack
 private:
 	string code;
 	string packName;
-	string date; //year-month-date
+	int date; //year-month-date
 	int price;
 	int availability;
 	customerDataLL traveler;
-	
 	string description;
 
 
 public:
-	TravelPack(const TravelPack&copy){
-		this->packName = copy.packName;
-		this->availability = copy.availability;
-		this->description = copy.description;
-		this->price = copy.price;
-	}
+
+	TravelPack(const TravelPack&copy);
+	TravelPack(string code, string packName, int price, int date, int availability);
+	TravelPack(){}
 	void setCode(string c);
 	void setPackName(string name);
 	void setPrice(int price);
@@ -32,17 +27,15 @@ public:
 	void setDescription(string description);
 	void addDescription(string description);
 	void addCustomer(customer c);
-	void setDate(string date);
+	void setDate(int date);
 	void initializeT();
-	string getCode();
+	string getCode()const;
 	string getPackName()const;
-	string getDate()const;
-	int getIntDate();
+	int getDate()const;
 	int getPrice()const;
 	int getAvailability()const;
 	customerDataLL getTraveler();
 	string getDescription()const;
-	TravelPack();
-	TravelPack(string code,string packName,int price,string date,int availability);
+	
 	~TravelPack();
 };

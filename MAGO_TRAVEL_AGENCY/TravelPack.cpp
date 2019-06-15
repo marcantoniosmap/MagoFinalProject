@@ -1,19 +1,21 @@
 #include "TravelPack.h"
 
 //Constructor
-TravelPack::TravelPack()
-{
-	
-}
-TravelPack::TravelPack(string code,string packName,int price,string date, int availability)
+
+TravelPack::TravelPack(string code,string packName,int price,int date, int availability)
 {
 	this->code = code;
 	this->packName = packName;
-	this->date = date;
 	this->price = price;
+	this->date = date;
 	this->availability = availability;
 }
-
+TravelPack::TravelPack(const TravelPack&copy) {
+	this->packName = copy.packName;
+	this->availability = copy.availability;
+	this->description = copy.description;
+	this->price = copy.price;
+}
 
 //setter and getter
 void TravelPack::setCode(string c)
@@ -46,7 +48,7 @@ void TravelPack::addCustomer(customer c)
 	this->traveler.AddNewCustomer(c);
 	
 }
-void TravelPack::setDate(string date)
+void TravelPack::setDate(int date)
 {
 	this->date = date;
 }
@@ -54,7 +56,7 @@ void TravelPack::initializeT()
 {
 	this->traveler.empty();
 }
-string TravelPack::getCode()
+string TravelPack::getCode()const
 {
 	return code;
 }
@@ -63,15 +65,14 @@ string TravelPack::getPackName()const
 	return packName;
 }
 
-
-string TravelPack::getDate()const
+int TravelPack::getDate()const
 {
 	return date;
 }
-int TravelPack::getIntDate()
-{
-	return stoi(date);
-}
+//int TravelPack::getIntDate()
+//{
+//	return stoi(date);
+//}
 
 int TravelPack::getPrice()const
 {

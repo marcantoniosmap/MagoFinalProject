@@ -1,8 +1,7 @@
 #pragma once
-
-#include "customer.h"
 #include <iostream>
 #include <iomanip>
+#include "customer.h"
 using namespace std;
 
 struct Node

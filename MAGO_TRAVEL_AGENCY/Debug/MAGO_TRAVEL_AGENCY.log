@@ -1,28 +1,6 @@
-﻿  Source.cpp
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.h(79): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.h(110): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.h(135): warning C4018: '<': signed/unsigned mismatch
-  TravelPack.cpp
-  UserInterface.cpp
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.h(79): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.h(110): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.h(135): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface.cpp(49): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface.cpp(68): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface.cpp(154): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface.cpp(178): warning C4018: '<': signed/unsigned mismatch
-  customer.cpp
-  Generating Code...
-Source.obj : error LNK2005: "public: __thiscall FunctionController::FunctionController(void)" (??0FunctionController@@QAE@XZ) already defined in FunctionController.obj
-Source.obj : error LNK2005: "public: __thiscall FunctionController::~FunctionController(void)" (??1FunctionController@@QAE@XZ) already defined in FunctionController.obj
-Source.obj : error LNK2005: "public: void __thiscall FunctionController::addNewItem(class TravelPack)" (?addNewItem@FunctionController@@QAEXVTravelPack@@@Z) already defined in FunctionController.obj
-Source.obj : error LNK2005: "public: void __thiscall FunctionController::myReplace(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?myReplace@FunctionController@@QAEXAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV23@1@Z) already defined in FunctionController.obj
-Source.obj : error LNK2005: "public: void __thiscall FunctionController::readFile(void)" (?readFile@FunctionController@@QAEXXZ) already defined in FunctionController.obj
-Source.obj : error LNK2005: "public: void __thiscall FunctionController::writeFile(void)" (?writeFile@FunctionController@@QAEXXZ) already defined in FunctionController.obj
-UserInterface.obj : error LNK2005: "public: __thiscall FunctionController::FunctionController(void)" (??0FunctionController@@QAE@XZ) already defined in FunctionController.obj
-UserInterface.obj : error LNK2005: "public: __thiscall FunctionController::~FunctionController(void)" (??1FunctionController@@QAE@XZ) already defined in FunctionController.obj
-UserInterface.obj : error LNK2005: "public: void __thiscall FunctionController::addNewItem(class TravelPack)" (?addNewItem@FunctionController@@QAEXVTravelPack@@@Z) already defined in FunctionController.obj
-UserInterface.obj : error LNK2005: "public: void __thiscall FunctionController::myReplace(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?myReplace@FunctionController@@QAEXAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV23@1@Z) already defined in FunctionController.obj
-UserInterface.obj : error LNK2005: "public: void __thiscall FunctionController::readFile(void)" (?readFile@FunctionController@@QAEXXZ) already defined in FunctionController.obj
-UserInterface.obj : error LNK2005: "public: void __thiscall FunctionController::writeFile(void)" (?writeFile@FunctionController@@QAEXXZ) already defined in FunctionController.obj
-C:\Users\MarcAntonio\source\repos\MAGO_TRAVEL_AGENCY\Debug\MAGO_TRAVEL_AGENCY.exe : fatal error LNK1169: one or more multiply defined symbols found
+﻿  FunctionController.cpp
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(67): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(99): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(124): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(156): warning C4018: '<': signed/unsigned mismatch
+  MAGO_TRAVEL_AGENCY.vcxproj -> C:\Users\MarcAntonio\source\repos\MAGO_TRAVEL_AGENCY\Debug\MAGO_TRAVEL_AGENCY.exe

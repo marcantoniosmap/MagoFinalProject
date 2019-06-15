@@ -1,6 +1,7 @@
 #pragma once
 #include <iomanip>
 #include <string>
+#include <stdlib.h>
 #include "FunctionController.h"
 
 class UserInterface
