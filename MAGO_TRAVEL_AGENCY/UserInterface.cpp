@@ -18,10 +18,14 @@ void UserInterface::mainMenu() {
 			cout << "[2].Book" << endl;
 			cin >> y;
 			if (y == 1) {
+<<<<<<< HEAD
 				cout << functionController.TravelPackData[0].getPackName() << endl;
+=======
+				search();
+>>>>>>> deb2a14d11c61b0db4a1eef7764952506798c7c8
 			}
 			else if (y == 2) {
-				//book();
+				book();
 			}
 		}
 		else if (x == 2) {
@@ -43,6 +47,7 @@ void UserInterface::mainMenu() {
 	}
 }
 
+<<<<<<< HEAD
 void UserInterface::checkStatus()
 {
 	
@@ -153,35 +158,11 @@ void UserInterface::editItem()
 		{
 			element++;
 		}
+=======
+>>>>>>> deb2a14d11c61b0db4a1eef7764952506798c7c8
 
-		index++;
-	}
-	cout << "Input Index of the package you wish to edit." << endl;
-	cin >> index;
-	cout << "Input your new Date." << endl;
-	cin >> date;
-	functionController.TravelPackData[index + element].setDate(date);
-}
 
-void UserInterface::deleteItem()
-{
-	int element = 0;
-	string packCode;
-	cout << "Input the package code for the package you want to delete" << endl;
-	cin >> packCode;
-	for (int i = 0; i < functionController.TravelPackData.size(); i++) {
-		if (functionController.TravelPackData[i].getCode() == packCode) {
-			functionController.TravelPackData.erase(functionController.TravelPackData.begin() + element);
-			cout << "Your package has been successfully deleted" << endl;
-			break;
-		}
-		else
-		{
-			element++;
-		}
 
-	}
-}
 UserInterface::UserInterface()
 {
 }

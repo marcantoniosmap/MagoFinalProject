@@ -1,4 +1,8 @@
 AEE31052019 MarcAntonio Purnama 19 Indonesia 0 3000
 AEE31052019 Figo Aranta 19 Indonesia 0 3000
+<<<<<<< HEAD
 AEE31052019 Michael Berlian 19 Indonesia 0 3000
 HTIB10102019 Brandon Anjing 20 Canadian 1 50000
+=======
+AEE31052019 Michael Berlian 19 Indonesia 0 2000
+>>>>>>> deb2a14d11c61b0db4a1eef7764952506798c7c8
