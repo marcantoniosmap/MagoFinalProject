@@ -54,5 +54,6 @@
   <ItemGroup>
     <Text Include="TravelPackage.txt" />
     <Text Include="TravelerData.txt" />
+    <Text Include="TravelP.txt" />
   </ItemGroup>
 </Project>

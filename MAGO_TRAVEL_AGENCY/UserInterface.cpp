@@ -18,11 +18,8 @@ void UserInterface::mainMenu() {
 			cout << "[2].Book" << endl;
 			cin >> y;
 			if (y == 1) {
-<<<<<<< HEAD
-				cout << functionController.TravelPackData[0].getPackName() << endl;
-=======
+				cout << functionController.TravelPackData[0].getCode() << endl;
 				search();
->>>>>>> deb2a14d11c61b0db4a1eef7764952506798c7c8
 			}
 			else if (y == 2) {
 				book();
@@ -47,12 +44,23 @@ void UserInterface::mainMenu() {
 	}
 }
 
-<<<<<<< HEAD
 void UserInterface::checkStatus()
 {
 	
 }
 
+void UserInterface::book()
+{
+	
+}
+void UserInterface::search()
+{
+
+}
+void UserInterface::deleteItem()
+{
+
+}
 void UserInterface::add()
 {
 	string  packName, packCode;
@@ -80,7 +88,7 @@ void UserInterface::add()
 			cout << "Input code" << endl;
 			cin >> packCode;
 			TravelPack n(functionController.TravelPackData[index]);
-			n.setDate(date);
+			//n.setDate(date);
 			n.setCode(packCode);
 			functionController.addNewItem(n);
 			cout << "Your new package has been successfully added..." << endl;
@@ -90,17 +98,12 @@ void UserInterface::add()
 	else if (option == 2)
 	{
 
-		//rapihin and give more guide (berapa character and validation)
-		//use getline(cin,packName) instead, cus bisa kasih space
-		//i think pake while loop "Number of date" kaya yang diatas juga perlu, cus pas mau bikin
-		// mau tau juga berapa banyak yang dia mau,
 		cout << "Input number of date you want to add" << endl;
 		cin >> numDate;
 		for (int i = 0; i < numDate; i++) {
 			cout << "input package code" << endl;
 			cin.ignore();
 			getline(cin, packCode);
-			//give the user the freedom to choose mereka pilih code sendiri atau kita aja yang nentuin.
 			cout << "Input package name" << endl;
 			getline(cin, packName);
 			cout << "Input package price" << endl;
@@ -108,13 +111,10 @@ void UserInterface::add()
 			cout << "Input package date" << endl;
 			cin >> date;
 			cin.ignore();
-			//instead tanya date nya satu per satu and validasiin valid gak 
 			cout << "Input package availability" << endl;
 			cin >> availability;
 
-			//cout something that tells the user (udah ke add loh)
-			//and maybe tampilin lagi, "are u sure u want to create blabla)
-			functionController.addNewItem(TravelPack(packCode, packName, price, date, availability));
+			//functionController.addNewItem(TravelPack(packCode, packName, price, date, availability));
 			cout << "Your new package has been successfully added..." << endl;
 		}
 	}
@@ -123,45 +123,42 @@ void UserInterface::add()
 
 void UserInterface::addEditDelete()
 {
-	{
-		int x;
-		cout << "[1].Add" << endl;
-		cout << "[2].Edit" << endl;
-		cout << "[3].Delete" << endl;
-		cin >> x;
-		if (x == 1) {
-			add();
-		}
-		else if (x == 2) {
-			editItem();
-		}
-		else if (x == 3) {
-			deleteItem();
-		}
 
-
+	int x;
+	cout << "[1].Add" << endl;
+	cout << "[2].Edit" << endl;
+	cout << "[3].Delete" << endl;
+	cin >> x;
+	if (x == 1) {
+		add();
 	}
+	else if (x == 2) {
+		editItem();
+	}
+	else if (x == 3) {
+		deleteItem();
+	}
+
 }
 
 void UserInterface::editItem()
 {
 	string packName;
-	int  date,index = 0;
+	int  date, index = 0;
 	int element = 0;
 	cout << "Which package do you wish to edit." << endl;
 	cin >> packName;
 	for (int i = 0; i < functionController.TravelPackData.size(); i++) {
 		if (functionController.TravelPackData[i].getPackName() == packName) {
-			cout << index << "." << functionController.TravelPackData[i].getCode() << functionController.TravelPackData[i].getPackName() << functionController.TravelPackData[i].getDate() << endl;
+			cout << index << "." << functionController.TravelPackData[i].getCode() << functionController.TravelPackData[i].getPackName() << functionController.TravelPackData[i].date << endl;
 		}
 		else
 		{
 			element++;
 		}
-=======
->>>>>>> deb2a14d11c61b0db4a1eef7764952506798c7c8
 
-
+	}
+}
 
 UserInterface::UserInterface()
 {

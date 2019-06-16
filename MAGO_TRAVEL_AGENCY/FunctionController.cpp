@@ -32,51 +32,38 @@ void FunctionController::myReplace(string& str, const string& oldStr, const stri
 }
 void FunctionController::readFile()
 {
-	ifstream file("TravelPackage.txt");
-	string packageName,packageCode,price, availability,date;
-	int intprice, intavailability, intdate;
+	ifstream file("TravelP.txt");
+	string code, packageName, date;
+	string price, availability;
 	if (file.is_open()) {
-		while (file  >> packageCode>> packageName >> price >> date >> availability)
+		while (file >>  code >> packageName >> price >> date >> availability)
 		{
 			myReplace(packageName, "_", " ");
-			intprice = stoi(price);
-			intavailability = stoi(availability);
-			intdate = stoi(date);
-			addNewItem(TravelPack(packageCode,packageName,intprice,intdate,intavailability));
-
+			TravelPackData.push_back(TravelPack(code, packageName, price, date, availability));
 		}
 		file.close();
-	}
-	else
-	{
-		cout << "SORRY CAN'T READ TXT!" << endl;
-		exit(EXIT_FAILURE);
-	}
+	
 
-	ifstream file2("TravelerData.txt");
-
-	string code, firstN, surN, Nationality;
-	bool paid;
-	int age, priceP;
-	if (file2.is_open()) {
-		while (file2 >> code >> firstN >> surN >> age >> Nationality >> paid >> priceP)
-		{
-			myReplace(firstN, "_", " ");
-			myReplace(surN, "_", " ");
-
-			for (int i = 0; i < TravelPackData.size(); i++)
+		ifstream file2("TravelerData.txt");
+		string code, firstN, surN, Nationality;
+		bool paid;
+		int age, price;
+		if (file2.is_open()) {
+			while (file2 >> code >> firstN >> surN >> age >> Nationality >> paid >> price)
 			{
-				if (TravelPackData[i].getCode() == code)
+				myReplace(firstN, "_", " ");
+				myReplace(surN, "_", " ");
+				for (int i = 0; i < TravelPackData.size(); i++)
 				{
-					TravelPackData[i].addCustomer(customer(code, firstN, surN, age, Nationality, paid, priceP));
-					break;
+					if (TravelPackData[i].getCode() == code)
+					{
+						TravelPackData[i].addCustomer(customer(code, firstN, surN, age, Nationality, paid, price));
+					}
 				}
 			}
+			file2.close();
 		}
-
-		file2.close();
 	}
-	
 	else
 	{
 		cout << "SORRY CAN'T READ TXT!" << endl;
@@ -86,21 +73,21 @@ void FunctionController::readFile()
 
 void FunctionController::writeFile()
 {
-	ofstream file("TravelPackage.txt");
+	ofstream file("TravelP.txt");
 
-	string code, packageName;
-	int price, availability, date;
+	string code, packageName,date;
+	int price, availability;
 	if (!file.is_open())
 	{
 		exit(EXIT_FAILURE);
 	}
-	while (file.good())
+	while (!file.eof())
 	{
 		for (int i = 0; i < TravelPackData.size(); i++)
 		{
 			code = TravelPackData[i].getCode();
 			packageName = TravelPackData[i].getPackName();
-			date = TravelPackData[i].getDate();
+			date = TravelPackData[i].date;
 			price = TravelPackData[i].getPrice();
 			availability = TravelPackData[i].getAvailability();
 			myReplace(packageName, " ", "_");
@@ -119,7 +106,7 @@ void FunctionController::writeFile()
 	{
 		exit(EXIT_FAILURE);
 	}
-	while (file2.good())
+	while (!file2.eof())
 	{
 		for (int i = 0; i < TravelPackData.size(); i++)
 		{
@@ -155,7 +142,7 @@ void FunctionController::printExistingPack()
 
 	for (int i =0; i <TravelPackData.size();i++)
 	{
-		cout <<"||"<<setw(3)<< count<<"||"<<setw(15)<<TravelPackData[i].getDate()<<"||"<<setw(30)<<TravelPackData[i].getPackName()<<"||"<< endl;
+		cout <<"||"<<setw(3)<< count<<"||"<<setw(15)<<TravelPackData[i].date<<"||"<<setw(30)<<TravelPackData[i].packName<<"||"<< endl;
 		count++;
 	}
 

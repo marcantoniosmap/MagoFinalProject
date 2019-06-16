@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="TravelerData.txt" />
+    <Text Include="TravelP.txt" />
     <Text Include="TravelPackage.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

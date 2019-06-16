@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 ﻿  FunctionController.cpp
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(67): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(99): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(124): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(156): warning C4018: '<': signed/unsigned mismatch
-=======
-﻿  UserInterface.cpp
->>>>>>> deb2a14d11c61b0db4a1eef7764952506798c7c8
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(56): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(86): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(111): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(143): warning C4018: '<': signed/unsigned mismatch
   MAGO_TRAVEL_AGENCY.vcxproj -> C:\Users\MarcAntonio\source\repos\MAGO_TRAVEL_AGENCY\Debug\MAGO_TRAVEL_AGENCY.exe

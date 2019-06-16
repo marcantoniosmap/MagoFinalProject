@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-AEE_31052019 All_European_Express 30000 31052019 30
-MTA_06072019 Marc_Traveling_Agent 200000 06072019 10
-HTIB_10102019 Hi_This_Is_Brenda 50000 10102019 2
-=======
- AEE21122012 All_European_Express 30
- All_European_Express 3000  30
- SEA23112000 South_East_Asia 40
->>>>>>> deb2a14d11c61b0db4a1eef7764952506798c7c8
+AEE All_European_Express 30000 31052019 30
+MTA Marc_Traveling_Agent 200000 06072019 10
+HTIB Hi_This_Is_Brenda 50000 10102019 2

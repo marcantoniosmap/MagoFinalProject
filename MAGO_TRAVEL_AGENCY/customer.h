@@ -3,6 +3,7 @@
 #include  <iostream>
 #include <string>
 using namespace std;
+
 class customer
 {
 private:
@@ -35,7 +36,4 @@ public:
 	bool getPaid()const;
 	~customer();
 };
-
-#include"customer.cpp"
-
 
