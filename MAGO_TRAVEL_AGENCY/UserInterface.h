@@ -22,3 +22,4 @@ public:
 	UserInterface();
 	~UserInterface();
 };
+#include "UserInterface.cpp"

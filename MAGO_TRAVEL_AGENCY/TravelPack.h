@@ -47,3 +47,4 @@ public:
 	
 	~TravelPack();
 };
+#include"TravelPack.cpp"

@@ -19,3 +19,4 @@ public:
 	~FunctionController();
 
 };
+#include"FunctionController.cpp"
