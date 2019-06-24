@@ -36,5 +36,3 @@ public:
 	bool getPaid()const;
 	~customer();
 };
-
-#include"customer.cpp"

@@ -19,12 +19,12 @@ private:
 	Node* tail;
 	Node* current;
 	
-	int count;
 public:
 	const Node* itterate;
 	customerDataLL();
 	~customerDataLL();
 	void empty();
+	int CustomerCount();
 	void AddNewCustomer(customer addNew);
 	void moveItterate();
 	void displayAll();
@@ -32,4 +32,3 @@ public:
 	void search();
 
 };
-#include"customerDataLL.cpp"

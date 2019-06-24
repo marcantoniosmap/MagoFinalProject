@@ -6,7 +6,7 @@ using namespace std;
 class TravelPack
 {
 public:
-	string code;
+	string Pcode;
 	string packName;
 	string date; //year-month-date
 	int price;
@@ -18,16 +18,7 @@ public:
 public:
 
 	TravelPack(const TravelPack&copy);
-	TravelPack(string code, string packName, int price, string date, int availability);
-	TravelPack(string code, string packName, string price, string date, string availability)
-	{
-		this->code = code;
-		this->packName = packName;
-		this->price = stoi(price);
-		this->date = date;
-		this->availability = stoi(availability);
-	}
-	TravelPack(){}
+	TravelPack(string Pcode, string packName, int price, string date, int availability,string desc);
 	void setCode(string c);
 	void setPackName(string name);
 	void setPrice(int price);
@@ -35,16 +26,20 @@ public:
 	void setDescription(string description);
 	void addDescription(string description);
 	void addCustomer(customer c);
-	//void setDate(int date);
+	void setDate(string date);
 	void initializeT();
 	string getCode()const;
+	string getAlphaCode();
 	string getPackName()const;
-	//int getDate()const;
+	string getDate()const;
+	string getFormattedDate();
+	int getIntDate();
 	int getPrice()const;
 	int getAvailability()const;
+	int getCurrentAvailability();
 	customerDataLL getTraveler();
+	int getTravelerNumber();
 	string getDescription()const;
 	
 	~TravelPack();
 };
-#include"TravelPack.cpp"

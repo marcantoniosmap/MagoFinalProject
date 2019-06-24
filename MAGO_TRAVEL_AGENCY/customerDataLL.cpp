@@ -1,4 +1,4 @@
-// #include "customerDataLL.h"
+ #include "customerDataLL.h"
 
 
 customerDataLL::customerDataLL()
@@ -7,9 +7,22 @@ customerDataLL::customerDataLL()
 	tail = NULL;
 	current = NULL;
 	itterate = head;
-	count = 0;
 }
-
+int customerDataLL::CustomerCount()
+{
+	int count = 1;
+	Node* counter= head;
+	if (head == NULL)
+	{
+		return 0;
+	}
+	while (counter->link != NULL)
+	{
+		count++;
+		counter = counter->link;
+	}
+	return count;
+}
 
 customerDataLL::~customerDataLL()
 {
@@ -35,7 +48,6 @@ void customerDataLL::AddNewCustomer(customer addNew)
 		n->prev = tail;
 		tail = n;
 	}
-	count++;
 }
 void customerDataLL::displayAll()
 {

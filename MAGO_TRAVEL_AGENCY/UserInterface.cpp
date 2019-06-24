@@ -1,10 +1,11 @@
-// #include "UserInterface.h"
+#include "UserInterface.h"
 
 
 void UserInterface::mainMenu() {
 	int x,y;
 	functionController.readFile();
 	while (true) {
+		system("cls");
 		cout << "=============================" << endl;
 		cout << "Welcome to Mago Travel Agent" << endl;
 		cout << "=============================" << endl;
@@ -14,15 +15,33 @@ void UserInterface::mainMenu() {
 		cout << "[4] Save and Exit" << endl;
 		cin >> x;
 		if (x == 1) {
-			cout << "[1].Search" << endl;
-			cout << "[2].Book" << endl;
+			system("cls");
+			cout << "===============================" << endl;
+			cout << "Search and Book your travel now" << endl;
+			cout << "===============================" << endl;
+			cout << "[1].Search Travel Packages" << endl;
+			cout << "[2].Search Traveler Data" << endl;
+			cout << "[3].Book a package" << endl;
 			cin >> y;
-			if (y == 1) {
-				cout << functionController.TravelPackData[0].getCode() << endl;
-				search();
+			switch (y)
+			{
+			case 1:
+			{	
+				searchTravelPackages();
+				break;
 			}
-			else if (y == 2) {
-				book();
+			case 2:
+			{
+				searchTraveler();
+				break;
+			}
+			case 3:
+			{
+				break;
+			}
+			default:
+				cout << "Inappropriate input" << endl;
+				break;
 			}
 		}
 		else if (x == 2) {
@@ -34,12 +53,11 @@ void UserInterface::mainMenu() {
 		else if (x == 4)
 		{
 			functionController.writeFile();
-			//insert goodbye text
-			break;
+			return;
 		}
 		else
 		{
-			cout << "error mathefake" << endl;
+			cout << "Inappropriate input!" << endl;
 		}
 	}
 }
@@ -53,44 +71,85 @@ void UserInterface::book()
 {
 	
 }
-void UserInterface::search()
-{
 
-}
 void UserInterface::deleteItem()
 {
 
 }
 void UserInterface::add()
 {
-	string  packName, packCode;
-	int option, numDate, index, price,date, availability;
+	string  packName, packCode,date,codeInput,desc;
+	int option, numDate, price, availability,hash;
+	TravelPack* pointer;
 	
 	system("CLS");
 	cout << "========================================" << endl;
 	cout << "How do you want to add your new package." << endl;
 	cout << "========================================" << endl;
-	cout << "[1]. Add from the existing package." << endl;
-	cout << "[2]. Add new package." << endl;
+	cout << "[1]. Add date from the existing package." << endl;
+	cout << "[2]. Add a brand new package." << endl;
 	cin >> option;
 	if (option == 1) {
 		functionController.printExistingPack();
 
-		cout << "Input index" << endl;
-		cin >> index;
-
-		cout << "Number of date you want to add:" << endl;
-		cin >> numDate;
+		while (true)
+		{
+			cout << "Input the code of packs you wished to copy" << endl;
+			cin >>codeInput;
+			hash = codeInput[0] % 26;
+			for (int i = 0; i < functionController.TravelPackData[hash].size(); i++)
+			{
+				if (functionController.TravelPackData[hash][i].getCode()==codeInput)
+				{
+					pointer = &functionController.TravelPackData[hash][i];
+				}
+			}
+			int cant;
+			cout << "Code cannot be found!" << endl;
+			cout << "[1]. Try again" << endl;
+			cout << "[2]. EXIT" << endl;
+			cin >> cant;
+			if (cant == 1)continue;
+			else if (cant == 2) add();
+			else add();
+		}
+		while (true)
+		{
+			cout << "Input number of date you wish to add: [1-...]" << endl;
+			cin >> numDate;
+			if (numDate < 1 || numDate>10)
+			{
+				cout << "Inappropriate input!" << endl;
+			}
+			else break;
+		}
+		
 
 		for (int i = 0; i < numDate; i++) {
-			cout << "Input date:" << endl;
+			cout << "Input date ["<<i+1<<" / "<<numDate<<" ]" << endl;
 			cin >> date;
-			cout << "Input code" << endl;
+			cout << "Input code	(if you type ""_"", it will automatically create it for you):" << endl;
 			cin >> packCode;
-			TravelPack n(functionController.TravelPackData[index]);
-			//n.setDate(date);
-			n.setCode(packCode);
-			functionController.addNewItem(n);
+			if (packCode == " ")
+			{
+				packCode = pointer->getAlphaCode();
+				packCode += date;
+			}
+			else
+			{
+				for (int  i = 0; i < functionController.packageCount(hash); i++)
+				{
+					if (packCode == functionController.TravelPackData[hash][i].getCode())
+					{
+						cout << "Sorry but you may not use this code!" << endl;
+					}
+				}
+				
+			}
+			TravelPack copied= *pointer;
+			copied.setDate(date);
+			copied.setCode(packCode);
+			functionController.addNewItem(copied,packCode[0] % 26);
 			cout << "Your new package has been successfully added..." << endl;
 
 		}
@@ -113,8 +172,10 @@ void UserInterface::add()
 			cin.ignore();
 			cout << "Input package availability" << endl;
 			cin >> availability;
+			cout << "Input description" << endl;
+			getline(cin, desc);
 
-			//functionController.addNewItem(TravelPack(packCode, packName, price, date, availability));
+			functionController.addNewItem(TravelPack(packCode, packName, price, date, availability,desc),packCode[0]%26);
 			cout << "Your new package has been successfully added..." << endl;
 		}
 	}
@@ -143,7 +204,7 @@ void UserInterface::addEditDelete()
 
 void UserInterface::editItem()
 {
-	string packName;
+	/*string packName;
 	int  date, index = 0;
 	int element = 0;
 	cout << "Which package do you wish to edit." << endl;
@@ -157,11 +218,19 @@ void UserInterface::editItem()
 			element++;
 		}
 
-	}
+	}*/
 }
 
+void UserInterface::toLowering(string &tolowered)
+{
+	for (int  i = 0; i < tolowered.size(); i++)
+	{
+		tolower(tolowered[i]);
+	}
+}
 UserInterface::UserInterface()
 {
+	activePack = NULL;
 }
 
 

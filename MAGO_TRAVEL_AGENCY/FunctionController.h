@@ -9,14 +9,20 @@ class FunctionController
 {
 
 public:	
-	vector<TravelPack>TravelPackData;
+	vector<TravelPack>TravelPackData[26];
 	FunctionController();
+	int packageCount(int hashIndex);
+
+	void myReplace(string& str, const string& oldStr, const string& newStr);
+	void addNewItem(TravelPack p,int hashIndex);
+	void searchCode(string searchCode);
+	void searchKeyword(string searchKey);
+	void searchDate(string date);
+	void printExistingPack();
+	void printview(int hash,int index);
+
+
 	void readFile();
 	void writeFile();
-	void myReplace(string& str, const string& oldStr, const string& newStr);
-	void addNewItem(TravelPack p);
-	void printExistingPack();
 	~FunctionController();
-
 };
-#include"FunctionController.cpp"
