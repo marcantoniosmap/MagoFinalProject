@@ -1,3 +1,5 @@
+//Author: MarcAntonio and Figo Aranta
+
 #pragma once
 #include <iostream>
 #include "customerDataLL.h"
@@ -28,18 +30,19 @@ public:
 	void addCustomer(customer c);
 	void setDate(string date);
 	void initializeT();
-	string getCode()const;
+	string getCode();
 	string getAlphaCode();
-	string getPackName()const;
-	string getDate()const;
+	string getPackName();
+	string getDate();
 	string getFormattedDate();
 	int getIntDate();
-	int getPrice()const;
-	int getAvailability()const;
+	int getPrice();
+	int getAvailability();
 	int getCurrentAvailability();
 	customerDataLL getTraveler();
 	int getTravelerNumber();
-	string getDescription()const;
+	string getDescription();
+	string getFormattedDescripition();
 	
 	~TravelPack();
 };

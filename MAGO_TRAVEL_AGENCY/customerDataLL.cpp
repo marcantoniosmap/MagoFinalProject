@@ -1,4 +1,6 @@
- #include "customerDataLL.h"
+//Author: MarcAntonio and Figo Aranta
+
+#include "customerDataLL.h"
 
 
 customerDataLL::customerDataLL()
@@ -11,17 +13,23 @@ customerDataLL::customerDataLL()
 int customerDataLL::CustomerCount()
 {
 	int count = 1;
-	Node* counter= head;
+	Node* counter = head;
 	if (head == NULL)
 	{
 		return 0;
 	}
-	while (counter->link != NULL)
-	{
-		count++;
-		counter = counter->link;
+	try {
+		while (counter->link != NULL)
+		{
+			count++;
+			counter = counter->link;
+		}
+		return count;
 	}
-	return count;
+	catch (exception){
+		return 0;
+	}
+	return 0;
 }
 
 customerDataLL::~customerDataLL()
@@ -38,8 +46,7 @@ void customerDataLL::AddNewCustomer(customer addNew)
 	n->link = NULL;
 	if (head == NULL)
 	{
-		head = n;
-		tail = n;
+		head = tail = n;
 		tail->prev = NULL;
 	}
 	else

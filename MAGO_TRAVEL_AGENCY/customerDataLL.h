@@ -7,7 +7,7 @@ using namespace std;
 struct Node
 {
 	customer customerList;
-	Node*link;
+	Node* link;
 	Node* prev;
 	
 };
@@ -30,5 +30,15 @@ public:
 	void displayAll();
 	void deleteCustomer();
 	void search();
+	void init()
+	{
+		head = NULL;
+		tail = NULL;
+		current = NULL;
+		itterate = head;
+	}
+	Node* get_head() {
+		return head;
+	}
 
 };

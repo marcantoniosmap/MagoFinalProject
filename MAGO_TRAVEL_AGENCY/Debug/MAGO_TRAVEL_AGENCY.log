@@ -1,7 +1,20 @@
 ﻿  FunctionController.cpp
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(36): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(55): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(75): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(121): warning C4018: '<': signed/unsigned mismatch
-c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(220): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(38): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(57): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(77): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(190): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\functioncontroller.cpp(300): warning C4018: '<': signed/unsigned mismatch
+  UserInterface.cpp
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface.cpp(128): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface.cpp(352): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface.cpp(373): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface.cpp(402): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface.cpp(446): warning C4018: '<': signed/unsigned mismatch
+  UserInterface_Search.cpp
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface_search.cpp(109): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface_search.cpp(144): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface_search.cpp(179): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface_search.cpp(208): warning C4018: '<': signed/unsigned mismatch
+c:\users\marcantonio\source\repos\mago_travel_agency\mago_travel_agency\userinterface_search.cpp(483): warning C4101: 'paid': unreferenced local variable
+  Generating Code...
   MAGO_TRAVEL_AGENCY.vcxproj -> C:\Users\MarcAntonio\source\repos\MAGO_TRAVEL_AGENCY\Debug\MAGO_TRAVEL_AGENCY.exe

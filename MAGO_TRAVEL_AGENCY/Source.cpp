@@ -1,4 +1,5 @@
-#include <iostream>
+//Author: MarcAntonio and Figo Aranta
+
 #include "UserInterface.h"
 using namespace std;
  

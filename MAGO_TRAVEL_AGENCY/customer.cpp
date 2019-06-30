@@ -1,14 +1,10 @@
- #include "customer.h"
+//Author: MarcAntonio and Figo Aranta
+
+#include "customer.h"
 
 
 customer::customer()
 {
-	firstname = "";
-	surname = "";
-	age = 5;
-	citizenship = "";
-	paid = false;
-	price = 0;
 	
 }
 

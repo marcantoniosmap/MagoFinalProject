@@ -1,9 +1,11 @@
+//Author: MarcAntonio and Figo Aranta
+
 #include "FunctionController.h"
 
 
 FunctionController::FunctionController()
 {
-	for (int i = 0; i < 26; i++)
+	for (int i = 0; i < hashNum; i++)
 	{
 		TravelPackData[i].empty();
 	}
@@ -27,12 +29,12 @@ void FunctionController::addNewItem(TravelPack p,int HashIndex)
 
 void FunctionController::searchCode(string searchCode)
 {
-	int hash = searchCode[0]%26;
-	cout << "----------------------------------------------------------" << endl;
+	int hash = searchCode[0]% hashNum;
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 	cout << "			ALL EXISTING PACKAGE" << endl;
-	cout << "----------------------------------------------------------" << endl;
-	cout << "||" << setw(15) << "code" << "||" << setw(30) << "Name" << "||" << setw(12) << "price" << "||" << setw(10) << "date" << "||" << endl;
-	cout << "----------------------------------------------------------" << endl;
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << "||" << setw(15) << "code" << "||" << setw(50) << "Name" << "||" << setw(12) << "price" << "||" << setw(10) << "date" << "||" << endl;
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 	for (int i = 0; i < TravelPackData[hash].size(); i++)
 	{
 		if (TravelPackData[hash][i].getCode().find(searchCode) != string::npos)
@@ -40,17 +42,17 @@ void FunctionController::searchCode(string searchCode)
 			printview(hash,i);
 		}
 	}
-	cout << "----------------------------------------------------------" << endl;
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
 void FunctionController::searchKeyword(string searchKey)
 {
-	cout << "----------------------------------------------------------" << endl;
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 	cout << "			ALL EXISTING PACKAGE" << endl;
-	cout << "----------------------------------------------------------" << endl;
-	cout << "||" << setw(15) << "code" << "||" << setw(30) << "Name" << "||" << setw(12) << "price" << "||" << setw(10) << "date" << "||" << endl;
-	cout << "----------------------------------------------------------" << endl;
-	for (int j = 0; j < 26; j++)
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << "||" << setw(15) << "code" << "||" << setw(50) << "Name" << "||" << setw(12) << "price" << "||" << setw(10) << "date" << "||" << endl;
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
+	for (int j = 0; j < hashNum; j++)
 	{
 		for (int i = 0; i < TravelPackData[j].size(); i++)
 		{
@@ -60,17 +62,17 @@ void FunctionController::searchKeyword(string searchKey)
 			}
 		}
 	}
-	cout << "----------------------------------------------------------" << endl;
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
 void FunctionController::searchDate(string date)
 {
-	cout << "----------------------------------------------------------" << endl;
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 	cout << "			ALL EXISTING PACKAGE" << endl;
-	cout << "----------------------------------------------------------" << endl;
-	cout << "||" << setw(15) << "code" << "||" << setw(30) << "Name" << "||" << setw(12) << "price" << "||" << setw(10) << "date" << "||" << endl;
-	cout << "----------------------------------------------------------" << endl;
-	for (int j = 0; j < 26; j++)
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << "||" << setw(15) << "code" << "||" << setw(50) << "Name" << "||" << setw(12) << "price" << "||" << setw(10) << "date" << "||" << endl;
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
+	for (int j = 0; j < hashNum; j++)
 	{
 		for (int i = 0; i < TravelPackData[j].size(); i++)
 		{
@@ -80,7 +82,67 @@ void FunctionController::searchDate(string date)
 			}
 		}
 	}
-	cout << "----------------------------------------------------------" << endl;
+	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
+}
+
+void FunctionController::searchAllName(string customerName)
+{
+	cout << "----------------------------------------------------------------------------------------" << endl;
+	cout << "			ALL CUSTOMER NAME" << endl;
+	cout << "----------------------------------------------------------------------------------------" << endl;
+	cout << "||" << setw(15) << "code" << "||" << setw(20) << "SurName" << "||" << setw(20) << "FirstName" << "||" << setw(10) << "Cost" << "||" << endl;
+	cout << "----------------------------------------------------------------------------------------" << endl;
+	for (int j = 0; j < hashNum; j++)
+	{
+		for (int i = 0; i < packageCount(j); i++)
+		{
+			Node* counter = TravelPackData[j][i].getTraveler().get_head();
+			while (counter!= NULL && (counter->customerList.getSurName().find(customerName) != string::npos || counter->customerList.getFirstName().find(customerName) != string::npos))
+			{
+				cout << "||" << setw(15) << counter->customerList.getCode() << "||" << setw(20) << counter->customerList.getSurName() << "||" << setw(20) << counter->customerList.getFirstName() << "||" << setw(10) << counter->customerList.getPrice() << "||" << endl;
+				counter = counter->link;
+			}
+		}
+	}
+	cout << "---------------------------------------------------------------------------" << endl;
+}
+
+void FunctionController::searchNationality(string nationality)
+{
+	cout << "---------------------------------------------------------------------------" << endl;
+	cout << "			ALL CUSTOMER NAME (NATIONALITY)" << endl;
+	cout << "---------------------------------------------------------------------------" << endl;
+	cout << "||" << setw(15) << "code" << "||" << setw(20) << "SurName" << "||" << setw(20) << "FirstName" << "||" << setw(15) << "Citizenship" << "||" << endl;
+	cout << "---------------------------------------------------------------------------" << endl;
+	for (int j = 0; j < hashNum; j++)
+	{
+		for (int i = 0; i <packageCount(j); i++)
+		{
+			Node* counter = TravelPackData[j][i].getTraveler().get_head();
+			while (counter != NULL && (counter->customerList.getCitizenship().find(nationality) != string::npos))
+			{
+				cout << "||" << setw(15) << counter->customerList.getCode() << "||" << setw(20) << counter->customerList.getSurName() << "||" << setw(20) << counter->customerList.getFirstName() << "||" << setw(15) << counter->customerList.getCitizenship() << "||" << endl;
+				counter = counter->link;
+			}
+		}
+	}
+	cout << "---------------------------------------------------------------------------" << endl;
+}
+
+void FunctionController::listAllCustomer(TravelPack *active)
+{
+	cout << "---------------------------------------------------------------------------" << endl;
+	cout << "			ALL CUSTOMER NAME " << endl;
+	cout << "---------------------------------------------------------------------------" << endl;
+	cout << "||" << setw(15) << "code" << "||" << setw(20) << "SurName" << "||" << setw(20) << "FirstName" << "||" << setw(10) << "Cost" << "||" << endl;
+	cout << "---------------------------------------------------------------------------" << endl;
+	Node* counter = active->getTraveler().get_head();
+	while (counter != NULL)
+	{
+		cout << "||" << setw(15) << counter->customerList.getCode() << "||" << setw(20) << counter->customerList.getSurName() << "||" << setw(20) << counter->customerList.getFirstName() << "||" << setw(10) << counter->customerList.getPrice() << "||" << endl;
+		counter = counter->link;
+	}
+	cout << "---------------------------------------------------------------------------" << endl;
 }
 
 
@@ -95,29 +157,39 @@ void FunctionController::myReplace(string& str, const string& oldStr, const stri
 void FunctionController::readFile()
 {
 	ifstream file("TravelP.txt");
-	string codep, pname, date,desc,price_s;
+	string codep, pname, date,desc,price_s,avail_s;
 	int availability, hash;
 	if (file.is_open())
 	{
-		while (file>>codep>>pname>>price_s>>date>>availability>>desc)
+		while (file>>codep>>pname>>price_s>>date>>avail_s>>desc)
 		{
 			myReplace(pname, "_", " ");
 			myReplace(desc, "_", " ");
 			int price = stoi(price_s);
-			hash = codep[0]%26;
+			availability = stoi(avail_s);
+			hash = codep[0]% hashNum;
 			TravelPackData[hash].push_back(TravelPack (codep, pname, price, date, availability,desc));
 		}
 		
 		ifstream file2("TravelerData.txt");
-		string codel, firstN, surN, Nationality;
+		string codel, firstN, surN, Nationality,ages,prices,paids;
 		bool paid;
 		int age, price,hashTrav;
 		if (file2.is_open()) {
-			while (file2 >> codel >> firstN >> surN >> age >> Nationality >> paid >> price)
+			while (file2 >> codel >> firstN >> surN >> ages >> Nationality >> paids >> prices)
 			{
+				if (paids == "0") {
+					paid = false;
+				}
+				else {
+					paid = true;
+				}
+				age = stoi(ages);
+				price = stoi(prices);
 				myReplace(firstN, "_", " ");
 				myReplace(surN, "_", " ");
-				hashTrav = codel[0] % 26;
+				myReplace(Nationality, "_", " ");
+				hashTrav = codel[0] % hashNum;
 				for (int i = 0; i < TravelPackData[hashTrav].size(); i++)
 				{
 					if (TravelPackData[hashTrav][i].getCode() == codel)
@@ -144,6 +216,7 @@ void FunctionController::readFile()
 void FunctionController::writeFile()
 {
 	ofstream file("TravelP.txt");
+	string tres;
 
 	string codep, packageName,date,desc,priceS,availibility_s;
 	int price,availability;
@@ -151,26 +224,28 @@ void FunctionController::writeFile()
 	{
 		exit(EXIT_FAILURE);
 	}
-	while (file.good())
+	else
 	{
-		for (int j = 0; j < 26; j++)
+		for (int j = 0; j < hashNum; j++)
 		{
 			for (int i = 0; i < packageCount(j); i++)
 			{
 				codep = TravelPackData[j][i].getCode();
 				packageName = TravelPackData[j][i].getPackName();
+				cout << packageName;
 				date = TravelPackData[j][i].getDate();
 				price = TravelPackData[j][i].getPrice();
 				availability = TravelPackData[j][i].getAvailability();
 				desc = TravelPackData[j][i].getDescription();
-				priceS = "" + price;
-				availibility_s = ""+availability;
+				priceS = to_string(price);
+				availibility_s = to_string(availability);
 				myReplace(packageName, " ", "_");
 				myReplace(desc, " ", "_");
 
-				file << codep << " " << packageName << " " << price << " " << date << " " << availability << " "<<desc<<endl;
+				file << codep << " " << packageName << " " << priceS << " " << date << " " << availibility_s << " "<<desc<<endl;
 			}
-		}file.close();
+		}
+		file.close();
 	}
 	
 	ofstream file2("TravelerData.txt");
@@ -184,27 +259,33 @@ void FunctionController::writeFile()
 	}
 	while (file2.good())
 	{
-		for (int j = 0; j < 26; j++)
+		for (int j = 0; j < hashNum; j++)
 		{
 			for (int i = 0; i < packageCount(j); i++)
 			{
-				while (TravelPackData[j][i].getTraveler().itterate != NULL)
+				Node* counter = NULL;
+				if (TravelPackData[j][i].getTraveler().CustomerCount() > 0){
+					counter = TravelPackData[j][i].getTraveler().get_head();
+				}
+				while (counter != NULL)
 				{
-					codeN = TravelPackData[j][i].getTraveler().itterate->customerList.getCode();
-					fName = TravelPackData[j][i].getTraveler().itterate->customerList.getFirstName();
-					sName = TravelPackData[j][i].getTraveler().itterate->customerList.getSurName();
-					Nationality = TravelPackData[j][i].getTraveler().itterate->customerList.getCitizenship();
-					priceN = TravelPackData[j][i].getTraveler().itterate->customerList.getPrice();
-					age = TravelPackData[j][i].getTraveler().itterate->customerList.getAge();
-					paid = TravelPackData[j][i].getTraveler().itterate->customerList.getPaid();
+					codeN = counter->customerList.getCode();
+					fName = counter->customerList.getFirstName();
+					sName= counter->customerList.getSurName();
+					Nationality = counter->customerList.getCitizenship();
+					priceN = counter->customerList.getPrice();
+					age = counter->customerList.getAge();
+					paid = counter->customerList.getPaid();
 					myReplace(fName, " ", "_");
 					myReplace(sName, " ", "_");
+					myReplace(Nationality, " ", "_");
 
 					file2 << codeN << " " << fName << " " << sName << " " << age << " " << Nationality << " " << paid << " " << priceN << " " << endl;
-					TravelPackData[j][i].getTraveler().moveItterate();
+					counter = counter->link;
 				}
 			}
-		}file2.close();
+		}
+		file2.close();
 	}
 	
 }
@@ -215,13 +296,13 @@ void FunctionController::printExistingPack()
 	cout << "----------------------------------------------------------" << endl;
 	cout << "			ALL EXISTING PACKAGE" << endl;
 	cout << "----------------------------------------------------------" << endl;
-	cout << "||" << setw(3) << "No." << "||" << setw(15) << "code" << "||" << setw(30) << "Name" << "||" << endl;
+	cout << "||" << setw(3) << "No." << "||" << setw(15) << "Package code" << "||" << setw(50) << "Package Name" << "||" << endl;
 	cout << "----------------------------------------------------------" << endl;
-	for (int j = 0; j < 26; j++)
+	for (int j = 0; j < hashNum; j++)
 	{
 		for (int i = 0; i < TravelPackData[j].size(); i++)
 		{
-			cout << "||" << setw(3) << count << "||" << setw(15) << TravelPackData[j][i].Pcode << "||" << setw(30) << TravelPackData[j][i].packName << "||" << endl;
+			cout << "||" << setw(3) << count << "||" << setw(15) << TravelPackData[j][i].Pcode << "||" << setw(50) << TravelPackData[j][i].packName << "||" << endl;
 			count++;
 		}
 	}
@@ -230,6 +311,6 @@ void FunctionController::printExistingPack()
 
 void FunctionController::printview(int hash,int index)
 {
-		cout << "||"  << setw(15) << TravelPackData[hash][index].getCode() << "||" << setw(30) << TravelPackData[hash][index].getPackName() << "||"
-			<<setw(12)<<TravelPackData[hash][index].getPrice() <<"||"<<setw(10)<< TravelPackData[hash][index].getFormattedDate() <<"||"<<endl;
+		cout << "||"  << setw(15) << TravelPackData[hash][index].getCode() << "||" << setw(50) << TravelPackData[hash][index].getPackName() << "||"
+			<<setw(12)<<TravelPackData[hash][index].getPrice() <<"||"<<setw(10)<< TravelPackData[hash][index].getDate() <<"||"<<endl;
 }

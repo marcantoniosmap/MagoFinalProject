@@ -1,3 +1,5 @@
+//Author: MarcAntonio and Figo Aranta
+
 #include "UserInterface.h"
 void UserInterface::searchTravelPackages()
 {
@@ -7,9 +9,8 @@ void UserInterface::searchTravelPackages()
 	{
 
 		system("cls");
-		functionController.addNewItem((TravelPack("hitest", "immarc", 90, "75379755", 9, "anotherstringg")), 'h' % 26);
 		cout << "===============================" << endl;
-		cout << "			SEARCH MENU" << endl;
+		cout << "	SEARCH MENU" << endl;
 		cout << "===============================" << endl;
 		cout << "[1]. Search Code" << endl;
 		cout << "[2]. Search Name and Keyword" << endl;
@@ -62,6 +63,7 @@ void UserInterface::searchTravelPackages()
 			//advance search
 			int avancesearchinput;
 			bool startSearch = false;
+			string filterApplied = "";
 
 			bool run = true;
 			while (run)
@@ -75,6 +77,7 @@ void UserInterface::searchTravelPackages()
 				cout << "[4] Clear filters" << endl;
 				cout << "[5] View search result" << endl;
 				cout << "[6] Exit from advance search" << endl;
+				cout << "Filter applied:" <<filterApplied<< endl;
 				cout << "Select your command:" << endl;
 				cin >> avancesearchinput;
 				switch (avancesearchinput)
@@ -89,13 +92,14 @@ void UserInterface::searchTravelPackages()
 					cin >> maximum;
 					if (!startSearch)
 					{
-						for (int j = 0; j < 26; j++)
+						for (int j = 0; j < hashNum; j++)
 						{
 							for (int i = 0; i < functionController.packageCount(j); i++)
 							{
-								if (minimum<functionController.TravelPackData[j][i].getPrice() && maximum > functionController.TravelPackData[j][i].getPrice())
+								if (minimum<=functionController.TravelPackData[j][i].getPrice() && maximum >= functionController.TravelPackData[j][i].getPrice())
 								{
 									temporaryVector.push_back(&functionController.TravelPackData[j][i]);
+									startSearch = true;
 								}
 							}
 						}
@@ -110,6 +114,7 @@ void UserInterface::searchTravelPackages()
 							}
 						}
 					}
+					filterApplied += (", Price range from " + to_string(minimum) + "-" + to_string(maximum)+"\n");
 					break;
 				}
 				case 2:
@@ -122,13 +127,14 @@ void UserInterface::searchTravelPackages()
 					cin >> maximumDate;
 					if (!startSearch)
 					{
-						for (int j = 0; j < 26; j++)
+						for (int j = 0; j < hashNum; j++)
 						{
 							for (int i = 0; i < functionController.packageCount(j); i++)
 							{
 								if (minimumDate<functionController.TravelPackData[j][i].getIntDate() && maximumDate > functionController.TravelPackData[j][i].getIntDate())
 								{
 									temporaryVector.push_back(&functionController.TravelPackData[j][i]);
+									startSearch = true;
 								}
 							}
 						}
@@ -143,6 +149,7 @@ void UserInterface::searchTravelPackages()
 							}
 						}
 					}
+					filterApplied += (", Date range from " + to_string(minimumDate) + "-" + to_string(maximumDate) + "\n");
 					break;
 				}
 				case 3:
@@ -150,17 +157,19 @@ void UserInterface::searchTravelPackages()
 					string keywordSearched;
 					cout << "Adding a keyword" << endl;
 					cout << "Enter the desired keyword:" << endl;
+					cin.ignore();
 					getline(cin, keywordSearched);
 					toLowering(keywordSearched);
 					if (!startSearch)
 					{
-						for (int j = 0; j < 26; j++)
+						for (int j = 0; j < hashNum; j++)
 						{
 							for (int i = 0; i < functionController.packageCount(j); i++)
 							{
-								if (functionController.TravelPackData[j][i].getDescription().find(keywordSearched) != string::npos)
+								if (functionController.TravelPackData[j][i].getPackName().find(keywordSearched) != string::npos || functionController.TravelPackData[j][i].getDescription().find(keywordSearched) != string::npos)
 								{
 									temporaryVector.push_back(&functionController.TravelPackData[j][i]);
+									startSearch = true;
 								}
 							}
 						}
@@ -169,16 +178,22 @@ void UserInterface::searchTravelPackages()
 					{
 						for (int i = 0; i < temporaryVector.size(); i++)
 						{
-							if (!temporaryVector[i]->getDescription().find(keywordSearched) != string::npos)
+							if (temporaryVector[i]->getPackName().find(keywordSearched) != string::npos || temporaryVector[i]->getDescription().find(keywordSearched) != string::npos)
+							{
+								continue;
+							}
+							else
 							{
 								temporaryVector.erase(temporaryVector.begin() + i);
 							}
 						}
 					}
+					filterApplied += ("Containing keyword :" + keywordSearched);
 					break;
 				}
 				case 4:
 				{
+					filterApplied + "";
 					startSearch = false;
 					temporaryVector.clear();
 					break;
@@ -188,11 +203,11 @@ void UserInterface::searchTravelPackages()
 					cout << "----------------------------------------------------------" << endl;
 					cout << "			FILTERED PACKAGES" << endl;
 					cout << "----------------------------------------------------------" << endl;
-					cout << "||" << setw(15) << "code" << "||" << setw(30) << "Name" << "||" << setw(12) << "price" << "||" << setw(10) << "date" << "||" << endl;
+					cout << "||" << setw(15) << "code" << "||" << setw(40) << "Name" << "||" << setw(12) << "price" << "||" << setw(10) << "date" << "||" << endl;
 					cout << "----------------------------------------------------------" << endl;
 					for (int i = 0; i < temporaryVector.size(); i++)
 					{
-						cout << "||" << setw(15) << temporaryVector[i]->getCode() << "||" << setw(30) << temporaryVector[i]->getPackName() << "||"
+						cout << "||" << setw(15) << temporaryVector[i]->getCode() << "||" << setw(40) << temporaryVector[i]->getPackName() << "||"
 							<< setw(12) << temporaryVector[i]->getPrice() << "||" << setw(10) << temporaryVector[i]->getDate() << "||" << endl;
 					}
 					ActivatingSearch();
@@ -209,7 +224,7 @@ void UserInterface::searchTravelPackages()
 					break;
 				}
 				}
-				break;
+				
 			}
 		}
 		case 5:
@@ -234,23 +249,27 @@ void UserInterface::ActivatingSearch()
 		int yesOrNoinput;
 		string inp;
 		cout << "Find what you need?" << endl;
-		cout << "[1]. Yes, i'll input the code" << endl;
+		cout << "[1] Yes, i'll input the code" << endl;
 		cout << "[2] No, i would like to perform another search" << endl;
-		cout << "[3] Exit" << endl;
+		cout << "[3] Exit to main menu" << endl;
+		cout << "Enter your command:" << endl;
 		cin >> yesOrNoinput;
 		switch (yesOrNoinput)
 		{
 		case 1:
 		{
 			cout << "Enter complete code: " << endl;
+			cin.ignore();
 			getline(cin, inp);
-			int hash = inp[0] % 26;
+			int hash = inp[0] % hashNum;
 			for (int i = 0; i < functionController.packageCount(hash); i++)
 			{
 				if (inp == functionController.TravelPackData[hash][i].getCode())
 				{
-					cout << "Code found" << endl;
+					cout << "Code found [press enter to continue]" << endl;
 					activePack = &functionController.TravelPackData[hash][i];
+					cin.ignore();
+					run = false;
 					break;
 				}
 			}
@@ -258,12 +277,13 @@ void UserInterface::ActivatingSearch()
 		}
 		case 2:
 		{
-			searchTravelPackages();
+			run = false;
 			break;
 		}
 		case 3:
 		{
 			mainMenu();
+			return;
 			break;
 		}
 
@@ -294,8 +314,24 @@ void UserInterface::searchTraveler()
 		{
 		case 1:
 		{
+			int yesNoUserInput;
 			cout << "List of Traveler by Travel Code" << endl;
 			cout << "Do you want to list the active package?" << endl;
+			cout << "[1]. Yes i would like to search all traveler from the active package" << endl;
+			cout << "[2]. I would like to choose the package first" << endl;
+			cin >> yesNoUserInput;
+			if (yesNoUserInput == 2) searchTravelPackages();
+			else if (yesNoUserInput == 1)
+			{
+				if (activePack != NULL)
+				{
+					functionController.listAllCustomer(activePack);
+				}
+				else
+				{
+					cout << "Sorry, but you have not set your active package" << endl;
+				}
+			}
 			break;
 		}
 		case 2:
@@ -303,8 +339,10 @@ void UserInterface::searchTraveler()
 			string searchName;
 			cout << "Searching by Traveler name" << endl;
 			cout << "Enter traveler name you wish to search" << endl;
+			cin.ignore();
 			getline(cin, searchName);
 			toLowering(searchName);
+			functionController.searchAllName(searchName);
 
 			break;
 		}
@@ -313,8 +351,10 @@ void UserInterface::searchTraveler()
 			string NationalityName;
 			cout << "Searching by Traveler name" << endl;
 			cout << "Enter traveler nationality you wish to search" << endl;
+			cin.ignore();
 			getline(cin, NationalityName);
 			toLowering(NationalityName);
+			functionController.searchNationality(NationalityName);
 			break;
 		}
 		case 4:
@@ -338,7 +378,7 @@ void UserInterface::bookPackage()
 	{
 		int bookInput;
 		cout << "===============================" << endl;
-		cout << "		BOOKING TOUR MENU" << endl;
+		cout << "	BOOKING TOUR MENU" << endl;
 		cout << "===============================" << endl;
 		cout << "[1]. Book Activated package" << endl;
 		cout << "[2]. List package availability" << endl;
@@ -361,11 +401,12 @@ void UserInterface::bookPackage()
 			cout << "List of Package availability" << endl;
 			cout << "-----------------------------" << endl;
 			cout << setw(15) << "Code" << "||" << setw(20) << "availability" << endl;
-			for (int j = 0; j < 26; j++)
+			cout << "-----------------------------" << endl;
+			for (int j = 0; j < hashNum; j++)
 			{
 				for (int i = 0; i < functionController.packageCount(j); i++)
 				{
-					available = functionController.TravelPackData[j][i].getCurrentAvailability() + " / " + functionController.TravelPackData[j][i].getAvailability();
+					available = to_string(functionController.TravelPackData[j][i].getCurrentAvailability()) + " / " + to_string(functionController.TravelPackData[j][i].getAvailability());
 					cout << setw(15) << functionController.TravelPackData[j][i].getCode() << "||" << setw(20) <<
 						available << endl;
 				}
@@ -405,11 +446,11 @@ void UserInterface::bookingPage()
 	cout << "		BOOKING TOUR MENU" << endl;
 	cout << "===============================" << endl;
 	cout << "You are about to book this tour package" << endl;
-	cout << "Code:	" << activePack->getCode() << endl;
-	cout << "Name:	" << activePack->getPackName() << endl;
-	cout << "Price:	" << activePack->getPrice()<<endl;
-	cout << "Date:" << activePack->getFormattedDate()<<endl;
-	cout << "Availability" << activePack->getCurrentAvailability()<<endl;
+	cout << "Code			:" << activePack->getCode() << endl;
+	cout << "Name			:" << activePack->getPackName() << endl;
+	cout << "Price			:" << activePack->getPrice()<<endl;
+	cout << "Date			:" << activePack->getDate()<<endl;
+	cout << "Availability	:" << activePack->getCurrentAvailability()<<endl;
 	cout << "===============================" << endl;
 	cout << "[1]. Confirm order" << endl;
 	cout << "[2]. Exit" << endl;
@@ -421,7 +462,8 @@ void UserInterface::bookingPage()
 		int NumberOfPeople;
 		cout << "Enter number of people you want to book for [ MAX : "<<activePack->getCurrentAvailability()<<" ]" << endl;
 		cin >> NumberOfPeople;
-		while (true)
+		bool check = true;
+		while (check)
 		{
 			
 				
@@ -446,6 +488,7 @@ void UserInterface::bookingPage()
 					cout << "Traveler Input ("<<i+1<<" / "<<NumberOfPeople<<")" << endl;
 					cout << "=====================" << endl;
 					cout << "Enter First name :" << endl;
+					cin.ignore();
 					getline(cin, fName);
 					cout << "Enter Last name:	" << endl;
 					getline(cin, lName);
@@ -453,7 +496,7 @@ void UserInterface::bookingPage()
 					getline(cin, Nationality);
 					cout << "Enter current age:" << endl;
 					cin >> ageInput;
-					if (ageInput > 15)
+					if (ageInput < 15)
 					{
 						int inpY;
 						cout << "This inputted traveler is below 15 years old" << endl;
@@ -482,6 +525,7 @@ void UserInterface::bookingPage()
 					cout << "New traveler data is inputted" << endl;
 
 				}
+				check = false;
 				
 			}
 		}

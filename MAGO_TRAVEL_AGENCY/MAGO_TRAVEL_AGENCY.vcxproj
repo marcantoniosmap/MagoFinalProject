@@ -128,12 +128,12 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TravelPack.cpp" />
     <ClCompile Include="UserInterface.cpp" />
+    <ClCompile Include="UserInterface_edit.cpp" />
     <ClCompile Include="UserInterface_Search.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="TravelerData.txt" />
     <Text Include="TravelP.txt" />
-    <Text Include="TravelPackage.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
