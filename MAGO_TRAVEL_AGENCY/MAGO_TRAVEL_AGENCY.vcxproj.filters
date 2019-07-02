@@ -56,6 +56,9 @@
     <ClCompile Include="UserInterface_edit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UserInterface_status.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TravelerData.txt" />

@@ -1,7 +1,7 @@
 //Author: MarcAntonio and Figo Aranta
 
 #include "UserInterface.h"
-
+using namespace std;
 
 void UserInterface::mainMenu() {
 	int x,y;
@@ -12,7 +12,7 @@ void UserInterface::mainMenu() {
 	while (true) {
 		system("cls");
 		cout << "=============================" << endl;
-		cout << "Welcome to Mago Travel Agent" << endl;
+		cout << " Welcome to Mago Travel Agent" << endl;
 		cout << "=============================" << endl;
 		cout << "[1] Search and Book package." << endl;
 		cout << "[2] Current Status." << endl;
@@ -80,7 +80,8 @@ void UserInterface::mainMenu() {
 		else if (x == 4)
 		{
 			functionController.writeFile();
-			return;
+			exit(1);
+			
 		}
 		else
 		{
@@ -89,29 +90,16 @@ void UserInterface::mainMenu() {
 	}
 }
 
-void UserInterface::checkStatus()
-{
-	
-}
 
-void UserInterface::book()
-{
-	
-}
-
-void UserInterface::deleteItem()
-{
-
-}
 void UserInterface::add()
 {
 	string  packName, packCode,date,codeInput,desc;
 	int option, numDate, price, availability,hash;
-	TravelPack* pointer;
+	TravelPack* pointer=NULL;
 	
 	system("CLS");
 	cout << "========================================" << endl;
-	cout << "How do you want to add your new package." << endl;
+	cout << " How do you want to add your new package?" << endl;
 	cout << "========================================" << endl;
 	cout << "[1]. Add date from the existing package." << endl;
 	cout << "[2]. Add a brand new package." << endl;
@@ -119,28 +107,31 @@ void UserInterface::add()
 	cin >> option;
 	if (option == 1) {
 		functionController.printExistingPack();
-
-		while (true)
+		bool run = true;
+		while (run)
 		{
 			cout << "Input the code of packs you wished to copy" << endl;
 			cin >>codeInput;
 			hash = codeInput[0] % hashNum;
-			for (int i = 0; i < functionController.TravelPackData[hash].size(); i++)
+			for (int i = 0; i < functionController.packageCount(hash); i++)
 			{
 				if (functionController.TravelPackData[hash][i].getCode()==codeInput)
 				{
 					pointer = &functionController.TravelPackData[hash][i];
+					run = false;
 					break;
 				}
 			}
-			int cant;
-			cout << "Code cannot be found!" << endl;
-			cout << "[1]. Try again" << endl;
-			cout << "[2]. EXIT" << endl;
-			cin >> cant;
-			if (cant == 1)continue;
-			else if (cant == 2) add();
-			else add();
+			if (run) {
+				int cant;
+				cout << "Code cannot be found!" << endl;
+				cout << "[1]. Try again" << endl;
+				cout << "[2]. EXIT" << endl;
+				cin >> cant;
+				if (cant == 1)continue;
+				else if (cant == 2) add();
+				else add();
+			}
 		}
 		while (true)
 		{
@@ -309,12 +300,12 @@ void UserInterface::customize()
 	string StringX;
 	while (true)
 	{
-		cout << "--------------------------------" << endl;
+		cout << "=================================" << endl;
 		cout << " Welcome to Customize menu" << endl;
-		cout << "--------------------------------" << endl;
+		cout << "=================================" << endl;
 		cout << "[1].Add a package" << endl;
-		cout << "[2].Edit an existing package" << endl;
-		cout << "[3].Delete a package" << endl;
+		cout << "[2].Edit a package or Traveler" << endl;
+		cout << "[3].Delete a package or Traveler" << endl;
 		cout << "[4].Back to Main Menu" << endl;
 		cout << "Enter your command	:" << endl;
 		cin >> StringX;
@@ -331,7 +322,7 @@ void UserInterface::customize()
 			editMenu();
 		}
 		else if (x == 3) {
-			deleteItem();
+			deleteMenu();
 		}
 		else if (x == 4)
 		{
@@ -414,6 +405,17 @@ bool UserInterface::ValidateItem(string& content,string key)
 		}
 		else return true;
 	}
+
+	else if (key == "name")
+	{
+		if (content.size() < 3 || content.size() > 20)return false;
+		else
+		{
+			toupper(content[0]);
+			return true;
+		}
+
+	}
 	else return false;
 
 }
@@ -459,6 +461,7 @@ string UserInterface::FormattingDesc(string desc)
 	}
 	return ret;
 }
+
 UserInterface::~UserInterface()
 {
 }

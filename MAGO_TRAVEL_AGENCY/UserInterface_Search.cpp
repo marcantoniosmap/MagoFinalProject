@@ -3,6 +3,8 @@
 #include "UserInterface.h"
 void UserInterface::searchTravelPackages()
 {
+	int searchInput;
+	string searchInputS;
 	bool runSearchMenu = true;
 	vector<TravelPack*>temporaryVector;
 	while (runSearchMenu)
@@ -18,8 +20,15 @@ void UserInterface::searchTravelPackages()
 		cout << "[4]. Advanced search" << endl;
 		cout << "[5]. Exit from search menu" << endl;
 		cout << "Select your command:" << endl;
-		int searchInput;
-		cin >> searchInput;
+		cin >> searchInputS;
+		try
+		{
+			searchInput = stoi(searchInputS);
+		}
+		catch (const std::exception&)
+		{
+			searchInput = 0;
+		}
 		switch (searchInput)
 		{
 
@@ -43,6 +52,7 @@ void UserInterface::searchTravelPackages()
 			cout << "Input your keyword here: " << endl;
 			cin.ignore();
 			getline(cin, keyword);
+			toLowering(keyword);
 			functionController.searchKeyword(keyword);
 			ActivatingSearch();
 			break;
@@ -68,6 +78,7 @@ void UserInterface::searchTravelPackages()
 			bool run = true;
 			while (run)
 			{
+				system("cls");
 				cout << "=============================" << endl;
 				cout << "    THIS IS ADVANCE SEARCH" << endl;
 				cout << "=============================" << endl;
@@ -188,7 +199,7 @@ void UserInterface::searchTravelPackages()
 							}
 						}
 					}
-					filterApplied += ("Containing keyword :" + keywordSearched);
+					filterApplied += ("Containing keyword : " + keywordSearched + "\n");
 					break;
 				}
 				case 4:
@@ -200,16 +211,17 @@ void UserInterface::searchTravelPackages()
 				}
 				case 5:
 				{
-					cout << "----------------------------------------------------------" << endl;
-					cout << "			FILTERED PACKAGES" << endl;
-					cout << "----------------------------------------------------------" << endl;
+					cout << "--------------------------------------------------------------------------------------------" << endl;
+					cout << "				FILTERED PACKAGES" << endl;
+					cout << "--------------------------------------------------------------------------------------------" << endl;
 					cout << "||" << setw(15) << "code" << "||" << setw(40) << "Name" << "||" << setw(12) << "price" << "||" << setw(10) << "date" << "||" << endl;
-					cout << "----------------------------------------------------------" << endl;
+					cout << "--------------------------------------------------------------------------------------------" << endl;
 					for (int i = 0; i < temporaryVector.size(); i++)
 					{
 						cout << "||" << setw(15) << temporaryVector[i]->getCode() << "||" << setw(40) << temporaryVector[i]->getPackName() << "||"
 							<< setw(12) << temporaryVector[i]->getPrice() << "||" << setw(10) << temporaryVector[i]->getDate() << "||" << endl;
 					}
+					cout << "--------------------------------------------------------------------------------------------" << endl;
 					ActivatingSearch();
 					break;
 				}
@@ -382,7 +394,7 @@ void UserInterface::bookPackage()
 		cout << "===============================" << endl;
 		cout << "[1]. Book Activated package" << endl;
 		cout << "[2]. List package availability" << endl;
-		cout << "[3]. Set Payment " << endl;
+		cout << "[3]. Set Payment in the activated package" << endl;
 		cout << "[4]. Set the activated Package" << endl;
 		cout << "[5]. Exit from booking menu" << endl;
 		cout << "Select your command:" << endl;
@@ -397,17 +409,17 @@ void UserInterface::bookPackage()
 		case 2:
 		{
 			string available;
-			cout << "-----------------------------" << endl;
-			cout << "List of Package availability" << endl;
-			cout << "-----------------------------" << endl;
-			cout << setw(15) << "Code" << "||" << setw(20) << "availability" << endl;
+			cout << "==================================" << endl;
+			cout << "  List of Package availability" << endl;
+			cout << "==================================" << endl;
+			cout << setw(15) << "Code" << "||" << setw(15) << "availability" << endl;
 			cout << "-----------------------------" << endl;
 			for (int j = 0; j < hashNum; j++)
 			{
 				for (int i = 0; i < functionController.packageCount(j); i++)
 				{
 					available = to_string(functionController.TravelPackData[j][i].getCurrentAvailability()) + " / " + to_string(functionController.TravelPackData[j][i].getAvailability());
-					cout << setw(15) << functionController.TravelPackData[j][i].getCode() << "||" << setw(20) <<
+					cout << setw(15) << functionController.TravelPackData[j][i].getCode() << "||" << setw(15) <<
 						available << endl;
 				}
 			}
@@ -415,6 +427,68 @@ void UserInterface::bookPackage()
 		}
 		case 3:
 		{
+			int yesNoUserInput;
+			cout << "Set Payment to the activated Package" << endl;
+			cout << "Do you want to list the active package?" << endl;
+			cout << "[1]. Yes i would like to search all traveler from the active package" << endl;
+			cout << "[2]. I would like to choose the package first" << endl;
+			cin >> yesNoUserInput;
+			if (yesNoUserInput == 2) searchTravelPackages();
+			else if (yesNoUserInput == 1)
+			{
+				if (activePack != NULL)
+				{
+					int inputIndex,payment,repeat;
+					
+					while (true)
+					{
+						functionController.ListComplete((activePack));
+						if (activePack->getTravelerNumber() == 0) cout << "The pack is still empty" << endl;
+						else
+						{
+							cout << "Input the Number of the customer in order to set the payment" << endl;
+							cin >> inputIndex;
+							if (inputIndex > 0 && inputIndex <= activePack->getTravelerNumber())
+							{
+								inputIndex = inputIndex - 1;
+								cout << "Set Payment For" << endl;
+								cout << "First Name		:" << activePack->getTraveler().get(inputIndex)->getFirstName() << endl;
+								cout << "Last Name		:" << activePack->getTraveler().get(inputIndex)->getSurName() << endl;
+								cout << "Citizenship	:" << activePack->getTraveler().get(inputIndex)->getCitizenship() << endl;
+								cout << "To Pay			:" << activePack->getTraveler().get(inputIndex)->getPrice() << endl;
+								cout << "PAID			:" << activePack->getTraveler().get(inputIndex)->getPaidText() << endl;
+								cout << "SET PAYMENT TO" << endl;
+								cout << "[1]. PAID" << endl;
+								cout << "[2]. UNPAID" << endl;
+								cout << "[3]. CANCEL" << endl;
+								cout << "[3]. EXIT" << endl;
+								cin >> payment;
+								if (payment == 1) activePack->getTraveler().get(inputIndex)->setPaid(true);
+								else if (payment == 2) activePack->getTraveler().get(inputIndex)->setPaid(false);
+								else if (payment == 3)continue;
+								else break;
+								cout << "Would you like to repeat or redo a process" << endl;
+								cout << "[1]. YES" << endl;
+								cout << "[2]. NO" << endl;
+								cin >> repeat;
+								if (repeat == 1) continue;
+								else break;
+
+							}
+							else
+							{
+								cout << "Inappropriate input" << endl;
+							}
+						}
+					}
+					
+				}
+				else
+				{
+					cout << "Sorry, but you have not set your active package" << endl;
+				}
+			}
+			break;
 			break;
 		}
 		case 4:
@@ -487,14 +561,14 @@ void UserInterface::bookingPage()
 					cout << "=====================" << endl;
 					cout << "Traveler Input ("<<i+1<<" / "<<NumberOfPeople<<")" << endl;
 					cout << "=====================" << endl;
-					cout << "Enter First name :" << endl;
+					cout << "Enter First name of the traveler:" << endl;
 					cin.ignore();
 					getline(cin, fName);
-					cout << "Enter Last name:	" << endl;
+					cout << "Enter Last name of the traveler:	" << endl;
 					getline(cin, lName);
-					cout << "Enter Nationality:	" << endl;
+					cout << "Enter citizenship of the traveler:	" << endl;
 					getline(cin, Nationality);
-					cout << "Enter current age:" << endl;
+					cout << "Enter current age of the traveler:" << endl;
 					cin >> ageInput;
 					if (ageInput < 15)
 					{
@@ -521,7 +595,17 @@ void UserInterface::bookingPage()
 					{
 						price = activePack->getPrice();
 					}
-					activePack->addCustomer(customer(activePack->getCode(), fName, lName, ageInput, Nationality, 0, price));
+					int payment;
+					bool paid;
+					cout << "Set Payment to :" << endl;
+					cout << "[1]. PAID" << endl;
+					cout << "[2]. UNPAID" << endl;
+					cout << "Select command" << endl;
+					cin >> payment;
+					if (payment == 1) paid = true;
+					else paid = false;
+
+					activePack->addCustomer(customer(activePack->getCode(), fName, lName, ageInput, Nationality, paid, price));
 					cout << "New traveler data is inputted" << endl;
 
 				}

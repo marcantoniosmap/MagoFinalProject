@@ -130,6 +130,7 @@
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="UserInterface_edit.cpp" />
     <ClCompile Include="UserInterface_Search.cpp" />
+    <ClCompile Include="UserInterface_status.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="TravelerData.txt" />

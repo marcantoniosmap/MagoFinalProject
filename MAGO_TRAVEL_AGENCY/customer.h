@@ -36,5 +36,6 @@ public:
 	string getCitizenship()const;
 	int getPrice()const;
 	bool getPaid()const;
+	string getPaidText();
 	~customer();
 };

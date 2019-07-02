@@ -21,16 +21,16 @@ public:
 	void mainMenu();
 	void customize();
 	void editMenu();
-	void deleteItem();
-	
-	void book();
+	void deleteMenu();
+	void checkStatus();
+
 	void searchTravelPackages();
 	void searchTraveler();
 	void bookPackage();
-	void checkStatus();
+	
 	void add();
 	void editItem();
-	
+	void deleteItem();
 	void ActivatingSearch();
 	void bookingPage();
 

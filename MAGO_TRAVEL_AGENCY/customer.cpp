@@ -86,6 +86,10 @@ string customer::getCode()const
 {
 	return TravelCode;
 }
+string customer::getPaidText()
+{
+	return (paid) ? "YES" : "NO";
+}
 customer::~customer()
 {
 }

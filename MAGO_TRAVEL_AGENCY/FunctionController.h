@@ -27,8 +27,13 @@ public:
 	void searchAllName(string customerName);
 	void searchNationality(string nationality);
 
+	bool deletePack(string codeDelete);
 	void listAllCustomer(TravelPack *active);
+	void ListComplete(TravelPack *active);
+	void listSimilar(TravelPack *active);
+
 	void printExistingPack();
+	string toLoweringRet(string tolowered);
 	void printview(int hash,int index);
 	void readFile();
 	void writeFile();

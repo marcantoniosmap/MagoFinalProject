@@ -12,7 +12,7 @@ void UserInterface::editMenu()
 	{
 		int bookInput;
 		cout << "===============================" << endl;
-		cout << "		EDIT MENU" << endl;
+		cout << "	EDIT MENU" << endl;
 		cout << "===============================" << endl;
 		cout << "[1]. Edit Active Package" << endl;
 		cout << "[2]. Edit Traveler Data" << endl;
@@ -34,7 +34,148 @@ void UserInterface::editMenu()
 			}
 			case 2:
 			{
-				
+				int yesNoUserInput;
+				cout << "Set editing process to the activated Package customer" << endl;
+				cout << "Do you want to list the customer from active package?" << endl;
+				cout << "[1]. Yes i would like to search all traveler from the active package" << endl;
+				cout << "[2]. I would like to choose the package first" << endl;
+				cin >> yesNoUserInput;
+				if (yesNoUserInput == 2) searchTravelPackages();
+				else if (yesNoUserInput == 1)
+				{
+					if (activePack != NULL)
+					{
+						int inputIndex, edit, repeat;
+						bool run = true;
+						while (run)
+						{
+							functionController.ListComplete((activePack));
+							if (activePack->getTravelerNumber() == 0) cout << "The pack is still empty" << endl;
+							else
+							{
+								cout << "Input the Number of the customer in order to edit" << endl;
+								cin >> inputIndex;
+								if (inputIndex > 0 && inputIndex <= activePack->getTravelerNumber())
+								{
+									inputIndex = inputIndex - 1;
+									cout << " Editing Account" << endl;
+									cout << " [1] Edit First Name	:" << activePack->getTraveler().get(inputIndex)->getFirstName() << endl;
+									cout << " [2] Edit Last Name		:" << activePack->getTraveler().get(inputIndex)->getSurName() << endl;
+									cout << " [3] Edit Citizenship	:" << activePack->getTraveler().get(inputIndex)->getCitizenship() << endl;
+									cout << " [4] Edit Price			:" << activePack->getTraveler().get(inputIndex)->getPrice() << endl;
+									cout << " [5] EXIT" << endl;
+									cout << " Select field you wish to edit" << endl;
+									cin >> edit;
+									switch (edit)
+									{
+									case 1:
+									{
+										string fName;
+										while (true)
+										{
+											cout << "Enter new First Name" << endl;
+											getline(cin, fName);
+											if (ValidateItem(fName, "name"))
+											{
+												activePack->getTraveler().get(inputIndex)->setFirstName(fName);
+												cout << "Succesfully changed" << endl;
+												break;
+											}
+											else
+											{
+												cout << "Inappropriate input" << endl;
+											}
+										}
+										break;
+									}
+									case 2:
+									{
+										string LName;
+										while (true)
+										{
+											cout << "Enter new Last Name" << endl;
+											getline(cin, LName);
+											if (ValidateItem(LName, "name"))
+											{
+												activePack->getTraveler().get(inputIndex)->setSurName(LName);
+												cout << "Succesfully changed" << endl;
+												break;
+											}
+											else
+											{
+												cout << "Inappropriate input" << endl;
+											}
+										}
+										break;
+									}
+									case 3:
+									{
+										string citizenship;
+										while (true)
+										{
+											cout << "Enter new citizenship:" << endl;
+											getline(cin, citizenship);
+											if (ValidateItem(citizenship, "name"))
+											{
+												activePack->getTraveler().get(inputIndex)->setCitizenship(citizenship);
+												cout << "Succesfully changed" << endl;
+												break;
+											}
+											else
+											{
+												cout << "Inappropriate input" << endl;
+											}
+										}
+										break;
+									}
+									case 4:
+									{
+										int newPrice;
+										while (true)
+										{
+											cout << "Enter new Price" << endl;
+											cin >> newPrice;
+											if (ValidateNumber(newPrice, "price"))
+											{
+												activePack->getTraveler().get(inputIndex)->setPrice(newPrice);
+												cout << "Succesfully changed" << endl;
+												break;
+											}
+											else
+											{
+												cout << "Inappropriate input" << endl;
+											}
+										}
+										break;
+									}
+									case 5:
+									{
+										run = false;
+										break;
+									}
+									default:
+									{
+										cout << "Inappropriate input" << endl;
+										break;
+									}
+									}
+									
+								}
+								else
+								{
+									cout << "Inappropriate input" << endl;
+								}
+							}
+							
+						}
+
+					}
+					else
+					{
+						cout << "Sorry, but you have not set your active package" << endl;
+					}
+				}
+				break;
 				break;
 			}
 			case 3:
@@ -244,7 +385,9 @@ void UserInterface::editItem()
 					while (true)
 					{
 						cin.ignore();
-						cout << "Availability must be > 5 and <80" << endl;
+						int minimum;
+						minimum = (activePack->getTravelerNumber() > 5) ? activePack->getTravelerNumber() : 5;
+						cout << "Availability must be > "<<minimum<<" and <80" << endl;
 						cout << "Input package availability" << endl;
 						cin >> availability;
 						if (ValidateNumber(availability, "availability"))
@@ -261,6 +404,7 @@ void UserInterface::editItem()
 					string desc;
 					while (true)
 					{
+						cin.ignore();
 						cout << "Input brief description to the package" << endl;
 						cout << "Describe the package, location and explanation" << endl;
 						getline(cin, desc);
@@ -303,4 +447,172 @@ void UserInterface::editItem()
 
 
 	}
+}
+
+void UserInterface::deleteMenu()
+{
+	int x;
+	string StringX;
+	bool run = true;
+	while (run)
+	{
+		cout << "===============================" << endl;
+		cout << "	DELETE MENU" << endl;
+		cout << "===============================" << endl;
+		cout << "[1]. Delete Active Package" << endl;
+		cout << "[2]. Delete Traveler Data" << endl;
+		cout << "[3]. Set the activated Package" << endl;
+		cout << "[4]. Exit from delete menu" << endl;
+		cout << "Select your command:" << endl;
+		cin >> StringX;
+		try
+		{
+			x = stoi(StringX);
+		}
+		catch (const std::exception&) { x = 0; }
+		switch (x)
+		{
+		case 1:
+		{
+			deleteItem();
+			break;
+		}
+		case 2:
+		{
+			int yesNoUserInput;
+			cout << "Set Deleting process to the activated Package" << endl;
+			cout << "Do you want to list the active package?" << endl;
+			cout << "[1]. Yes i would like to search all traveler from the active package" << endl;
+			cout << "[2]. I would like to choose the package first" << endl;
+			cin >> yesNoUserInput;
+			if (yesNoUserInput == 2) searchTravelPackages();
+			else if (yesNoUserInput == 1)
+			{
+				if (activePack != NULL)
+				{
+					int inputIndex, deletion, repeat;
+
+					while (true)
+					{
+						functionController.ListComplete((activePack));
+						if (activePack->getTravelerNumber() == 0) cout << "The pack is still empty" << endl;
+						else
+						{
+							cout << "Input the Number of the customer in order to delete" << endl;
+							cin >> inputIndex;
+							if (inputIndex > 0 && inputIndex <= activePack->getTravelerNumber())
+							{
+								inputIndex = inputIndex - 1;
+								cout << "Delete Account" << endl;
+								cout << "Travel Code		:" << activePack->getCode() << endl;
+								cout << "First Name		:" << activePack->getTraveler().get(inputIndex)->getFirstName() << endl;
+								cout << "Last Name		:" << activePack->getTraveler().get(inputIndex)->getSurName() << endl;
+								cout << "Citizenship	:" << activePack->getTraveler().get(inputIndex)->getCitizenship() << endl;
+								cout << "To Pay			:" << activePack->getTraveler().get(inputIndex)->getPrice() << endl;
+								cout << "PAID			:" << activePack->getTraveler().get(inputIndex)->getPaidText() << endl;
+								cout << "Delete this Traveler Data (this would be permanent)" << endl;
+								cout << "[1]. Delete This Traveler" << endl;
+								cout << "[2]. CANCEL" << endl;
+								cout << "[3]. EXIT" << endl;
+								cin >> deletion;
+								if (deletion == 1)
+									activePack->getTraveler().deleteCustomer(inputIndex);
+								else if (deletion == 2) continue;
+								else break;
+								cout << "Would you like to repeat or redo a process" << endl;
+								cout << "[1]. YES" << endl;
+								cout << "[2]. NO" << endl;
+								cin >> repeat;
+								if (repeat == 1) continue;
+								else break;
+
+							}
+							else
+							{
+								cout << "Inappropriate input" << endl;
+							}
+						}
+						break;
+					}
+
+				}
+				else
+				{
+					cout << "Sorry, but you have not set your active package" << endl;
+				}
+			}
+			break;
+			
+		}
+		case 3:
+		{
+			searchTravelPackages();
+			break;
+		}
+		case 4:
+		{
+			customize();
+			run = false;
+			break;
+		}
+		default:
+			cout << "Inappropriate input" << endl;
+		
+		}
+	
+	}
+}
+
+void UserInterface::deleteItem()
+{
+	
+
+	if (activePack == NULL)
+	{
+		cout << "You have not chosen a package" << endl;
+		return;
+	}
+	int inp;
+	string StringInp;
+	
+	system("cls");
+	cout << "=====================================" << endl;
+	cout << " DELETE PREVIEW" << endl;
+	cout << "=====================================" << endl;
+	cout << "Code			:" << activePack->getCode() << endl;
+	cout << "Name			:" << activePack->getPackName() << endl;
+	cout << "Price			:" << activePack->getPrice() << endl;
+	cout << "Date			:" << activePack->getDate() << endl;
+	cout << "Availability	:" << activePack->getCurrentAvailability() << endl;
+	cout << "===============================" << endl;
+	cout << "[1]. Yes i would like to delete this package with all the traveler" << endl;
+	cout << "[2]. Exit" << endl;
+	cin >> StringInp;
+	try
+	{
+		inp = stoi(StringInp);
+	}
+	catch (const std::exception&)
+	{
+		inp = 0;
+	}
+	if (inp==1)
+	{
+		if (functionController.deletePack(activePack->getCode()))
+		{
+			cout << "Your Data had been succesfully deleted" << endl;
+			activePack = NULL;
+		}
+		else
+		{
+			cout << "ERROR deleting the pack" << endl;
+		}
+		return;
+	}
+	else
+	{
+		deleteItem();
+	}
+
+
 }

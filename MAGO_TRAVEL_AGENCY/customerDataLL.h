@@ -23,12 +23,13 @@ public:
 	const Node* itterate;
 	customerDataLL();
 	~customerDataLL();
+	customer* get(int i);
 	void empty();
 	int CustomerCount();
 	void AddNewCustomer(customer addNew);
 	void moveItterate();
 	void displayAll();
-	void deleteCustomer();
+	void deleteCustomer(int i);
 	void search();
 	void init()
 	{

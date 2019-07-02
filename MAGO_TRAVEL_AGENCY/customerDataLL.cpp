@@ -32,6 +32,17 @@ int customerDataLL::CustomerCount()
 	return 0;
 }
 
+customer *customerDataLL::get(int i)
+{
+	current = head;
+	while (current->link!= NULL && i >0)
+	{
+		current = current->link;
+		i--;
+	}
+	return &current->customerList;
+}
+
 customerDataLL::~customerDataLL()
 {
 }
@@ -68,9 +79,48 @@ void customerDataLL::displayAll()
 	}
 	
 }
-void customerDataLL::deleteCustomer()
+void customerDataLL::deleteCustomer(int i)
 {
+	if (head != NULL)
+	{
+		Node*delPtr = new Node;
+		current = head;
+		while (current->link != NULL && i > 1)
+		{
+			current = current->link;
+			i--;
+		}
+		delPtr = current;
+		
+		if (delPtr==head)
+		{
+			if (head->link == NULL)
+			{
+				head = NULL;
+				tail == NULL;
+				current = NULL;
+			}
+			else
+			{
+				head = head->link;
+				head->prev = NULL;
+			}
+		}
+		else if (delPtr == tail)
+		{
+			tail = tail->prev;
+			tail->link = NULL;
+		}
+		else
+		{
+			Node* temp = delPtr->prev;
+			Node* p = delPtr->link;
+			temp->link = p;
+			p->prev = temp;
+		}
+		delete delPtr;
 
+	}
 }
 void customerDataLL::search()
 {
