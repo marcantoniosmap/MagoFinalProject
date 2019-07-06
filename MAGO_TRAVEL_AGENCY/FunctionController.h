@@ -14,13 +14,13 @@ public:
 	vector<TravelPack>TravelPackData[hashNum];
 	FunctionController();
 
-
+//construtors
 	int packageCount(int hashIndex);
 
 	void myReplace(string& str, const string& oldStr, const string& newStr);
 	void addNewItem(TravelPack p,int hashIndex);
 
-	//searching function
+	//seraching funtion,  delete, list ,print, read and write.
 	void searchCode(string searchCode);
 	void searchKeyword(string searchKey);
 	void searchDate(string date);

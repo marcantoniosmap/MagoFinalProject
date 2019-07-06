@@ -18,6 +18,7 @@ private:
 	bool paid;
 
 public:
+	//construtors
 	customer();
 	customer(string fName, string sName, int age, string citizenship);
 	//for reading the txt file

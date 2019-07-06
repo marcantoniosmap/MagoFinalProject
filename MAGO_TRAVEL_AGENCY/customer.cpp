@@ -2,7 +2,7 @@
 
 #include "customer.h"
 
-
+//constructors
 customer::customer()
 {
 	
@@ -30,6 +30,7 @@ customer::customer(string tc,string fName, string sName, int age, string citizen
 	this->price = p;
 
 }
+//setter and getter
 void customer::setTravelCode(string code)
 {
 	this->TravelCode = code;

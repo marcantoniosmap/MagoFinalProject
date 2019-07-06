@@ -2,7 +2,7 @@
 
 #include "customerDataLL.h"
 
-
+// linkedlist to store customers' data
 customerDataLL::customerDataLL()
 {
 	head = NULL;
@@ -10,6 +10,7 @@ customerDataLL::customerDataLL()
 	current = NULL;
 	itterate = head;
 }
+//function to count the data in the list
 int customerDataLL::CustomerCount()
 {
 	int count = 1;
@@ -31,7 +32,7 @@ int customerDataLL::CustomerCount()
 	}
 	return 0;
 }
-
+//function to get the data
 customer *customerDataLL::get(int i)
 {
 	current = head;
@@ -50,6 +51,7 @@ void customerDataLL::moveItterate()
 {
 	itterate = itterate->link;
 }
+//function to add new customer
 void customerDataLL::AddNewCustomer(customer addNew)
 {
 	Node* n = new Node;
@@ -67,6 +69,7 @@ void customerDataLL::AddNewCustomer(customer addNew)
 		tail = n;
 	}
 }
+//function to display all traveler data
 void customerDataLL::displayAll()
 {
 	current = head;
@@ -79,6 +82,7 @@ void customerDataLL::displayAll()
 	}
 	
 }
+// function to delete customer
 void customerDataLL::deleteCustomer(int i)
 {
 	if (head != NULL)

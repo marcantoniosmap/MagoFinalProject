@@ -1,12 +1,14 @@
 //Author: MarcAntonio and Figo Aranta
 
 #include "UserInterface.h"
+// function to search travel packages from userinterface
 void UserInterface::searchTravelPackages()
 {
 	int searchInput;
 	string searchInputS;
 	bool runSearchMenu = true;
 	vector<TravelPack*>temporaryVector;
+		//userinterface of searching function
 	while (runSearchMenu)
 	{
 
@@ -76,6 +78,7 @@ void UserInterface::searchTravelPackages()
 			string filterApplied = "";
 
 			bool run = true;
+			//userinterface of advance searching
 			while (run)
 			{
 				system("cls");
@@ -93,6 +96,7 @@ void UserInterface::searchTravelPackages()
 				cin >> avancesearchinput;
 				switch (avancesearchinput)
 				{
+				// to search by price range
 				case 1:
 				{
 					int minimum, maximum;
@@ -128,6 +132,7 @@ void UserInterface::searchTravelPackages()
 					filterApplied += (", Price range from " + to_string(minimum) + "-" + to_string(maximum)+"\n");
 					break;
 				}
+				//to serach by date range
 				case 2:
 				{
 					int minimumDate, maximumDate;
@@ -163,6 +168,7 @@ void UserInterface::searchTravelPackages()
 					filterApplied += (", Date range from " + to_string(minimumDate) + "-" + to_string(maximumDate) + "\n");
 					break;
 				}
+				//to add a keyword
 				case 3:
 				{
 					string keywordSearched;
@@ -202,6 +208,7 @@ void UserInterface::searchTravelPackages()
 					filterApplied += ("Containing keyword : " + keywordSearched + "\n");
 					break;
 				}
+				// to clear all filter
 				case 4:
 				{
 					filterApplied + "";
@@ -209,6 +216,7 @@ void UserInterface::searchTravelPackages()
 					temporaryVector.clear();
 					break;
 				}
+				//to view search result
 				case 5:
 				{
 					cout << "--------------------------------------------------------------------------------------------" << endl;
@@ -225,6 +233,7 @@ void UserInterface::searchTravelPackages()
 					ActivatingSearch();
 					break;
 				}
+				//to exit from advance search
 				case 6:
 				{
 					run = false;
@@ -238,7 +247,7 @@ void UserInterface::searchTravelPackages()
 				}
 				
 			}
-		}
+		}//to exit from search menu
 		case 5:
 		{
 			runSearchMenu = false;
@@ -253,6 +262,7 @@ void UserInterface::searchTravelPackages()
 	}
 	
 }
+//  menu after user press search by code
 void UserInterface::ActivatingSearch()
 {
 	bool run = true;
@@ -268,6 +278,7 @@ void UserInterface::ActivatingSearch()
 		cin >> yesOrNoinput;
 		switch (yesOrNoinput)
 		{
+		//after the user input the code. Then user has to enter the complete code.
 		case 1:
 		{
 			cout << "Enter complete code: " << endl;
@@ -287,11 +298,13 @@ void UserInterface::ActivatingSearch()
 			}
 			break;
 		}
+		//to perform another search
 		case 2:
 		{
 			run = false;
 			break;
 		}
+		// to exit from main menu
 		case 3:
 		{
 			mainMenu();
@@ -306,11 +319,13 @@ void UserInterface::ActivatingSearch()
 	}
 	return;
 }
+//function to search by traveler
 void UserInterface::searchTraveler()
 {	
 	system("cls");
 	int inp;
 	bool run = true;
+	// the userinterface menu
 	while (run)
 	{
 		cout << "===============================" << endl;
@@ -324,6 +339,7 @@ void UserInterface::searchTraveler()
 		cin >> inp;
 		switch (inp)
 		{
+			// to list traveler by active package.
 		case 1:
 		{
 			int yesNoUserInput;
@@ -346,6 +362,7 @@ void UserInterface::searchTraveler()
 			}
 			break;
 		}
+		//to search by name
 		case 2:
 		{
 			string searchName;
@@ -358,6 +375,7 @@ void UserInterface::searchTraveler()
 
 			break;
 		}
+		//to search by nationality
 		case 3:
 		{
 			string NationalityName;
@@ -369,11 +387,13 @@ void UserInterface::searchTraveler()
 			functionController.searchNationality(NationalityName);
 			break;
 		}
+		// to exit to main menu
 		case 4:
 		{
 			run = false;
 			break;
 		}
+		//error message when user input inapropriate input
 		default:
 		{	
 			cout << "Inappropriate input" << endl;
@@ -383,9 +403,11 @@ void UserInterface::searchTraveler()
 		}
 	}
 }
+//function to book package
 void UserInterface::bookPackage()
 {
 	bool run = true;
+	//userinterface of booking package menu
 	while (run)
 	{
 		int bookInput;
@@ -401,11 +423,13 @@ void UserInterface::bookPackage()
 		cin >> bookInput;
 		switch (bookInput)
 		{
+		// to book activated package
 		case 1:
 		{
 			bookingPage();
 			break;
 		}
+		// to list package availability
 		case 2:
 		{
 			string available;
@@ -425,6 +449,7 @@ void UserInterface::bookPackage()
 			}
 			break;
 		}
+		// to set payment in activated package.
 		case 3:
 		{
 			int yesNoUserInput;
@@ -491,11 +516,13 @@ void UserInterface::bookPackage()
 			break;
 			break;
 		}
+		//to activate package
 		case 4:
 		{
 			searchTravelPackages();
 			break;
 		}
+		// to exit to main menu
 		case 5:
 		{
 			run = false;
@@ -506,6 +533,7 @@ void UserInterface::bookPackage()
 		}
 	}
 }
+//interface for booking page
 void UserInterface::bookingPage()
 {
 	if (activePack == NULL)
@@ -531,6 +559,7 @@ void UserInterface::bookingPage()
 	cin >> inp;
 	switch (inp)
 	{
+	// to confirm an order, user has to input for how many people and the customer data for each person
 	case 1:
 	{
 		int NumberOfPeople;
@@ -615,6 +644,7 @@ void UserInterface::bookingPage()
 		}
 		break;
 	}
+	// to exit
 	case 2:
 	{
 		bookPackage();

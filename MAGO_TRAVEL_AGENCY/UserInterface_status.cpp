@@ -1,5 +1,5 @@
 #include "UserInterface.h"
-
+//userinterface when user want to check the travel pack
 void UserInterface::checkStatus()
 {
 	string xString;
@@ -23,6 +23,7 @@ void UserInterface::checkStatus()
 		}
 		switch (x)
 		{
+			// to show all descripton of the travel package
 		case 1:
 		{
 			system("cls");
@@ -40,16 +41,19 @@ void UserInterface::checkStatus()
 			cout << "===========================================" << endl;
 			break;
 		}
+		// to show traveller data
 		case 2:
 		{
 			functionController.ListComplete(activePack);
 			break;
 		}
+		// to see the list of different date
 		case 3:
 		{
 			functionController.listSimilar(activePack);
 			break;
 		}
+		//to back to main menu
 		case 4:
 		{
 			mainMenu();

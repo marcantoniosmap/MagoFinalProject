@@ -18,7 +18,7 @@ public:
 
 
 public:
-
+//list of functions for travel pack and customer data
 	TravelPack(const TravelPack&copy);
 	TravelPack(string Pcode, string packName, int price, string date, int availability,string desc);
 	void setCode(string c);

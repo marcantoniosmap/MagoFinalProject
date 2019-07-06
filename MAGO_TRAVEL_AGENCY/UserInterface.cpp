@@ -2,7 +2,7 @@
 
 #include "UserInterface.h"
 using namespace std;
-
+//UserInterface for the main menu
 void UserInterface::mainMenu() {
 	int x,y;
 	string xString;
@@ -26,6 +26,7 @@ void UserInterface::mainMenu() {
 			cout << "Integer only" << endl;
 			x = 0;
 		}
+		//interface when user want to search and book package
 		if (x == 1) {
 			system("cls");
 			string yString;
@@ -46,21 +47,25 @@ void UserInterface::mainMenu() {
 			}
 			switch (y)
 			{
+			//to search travel package
 			case 1:
 			{	
 				searchTravelPackages();
 				break;
 			}
+			//to serach travel data
 			case 2:
 			{
 				searchTraveler();
 				break;
 			}
+			//to book a package
 			case 3:
 			{
 				bookPackage();
 				break;
 			}
+			//to go back to the main menu
 			case 4:
 			{
 				mainMenu();
@@ -70,19 +75,22 @@ void UserInterface::mainMenu() {
 				cout << "Inappropriate input" << endl;
 				break;
 			}
-		}
+		}//to see current status
 		else if (x == 2) {
 			checkStatus();
 		}
+		//to customize data
 		else if (x == 3) {
 			customize();
 		}
+		//to save and exit
 		else if (x == 4)
 		{
 			functionController.writeFile();
 			exit(1);
 			
 		}
+		// error warning when user input inappropriate input
 		else
 		{
 			cout << "Inappropriate input!" << endl;
@@ -90,13 +98,13 @@ void UserInterface::mainMenu() {
 	}
 }
 
-
+// function for add a new package
 void UserInterface::add()
 {
 	string  packName, packCode,date,codeInput,desc;
 	int option, numDate, price, availability,hash;
 	TravelPack* pointer=NULL;
-	
+	//Userinterface for add new package menu
 	system("CLS");
 	cout << "========================================" << endl;
 	cout << " How do you want to add your new package?" << endl;
@@ -105,6 +113,7 @@ void UserInterface::add()
 	cout << "[2]. Add a brand new package." << endl;
 	cout << "[3]. Back to main menu" << endl;
 	cin >> option;
+	//to add date from the existing package
 	if (option == 1) {
 		functionController.printExistingPack();
 		bool run = true;
@@ -191,7 +200,7 @@ void UserInterface::add()
 			cout << "Your new package has been successfully added..." << endl;
 
 		}
-	}
+	}//to add a brand new package.
 	else if (option == 2)
 	{
 	
@@ -282,6 +291,7 @@ void UserInterface::add()
 			}
 	}
 	}
+	// to back to main menu
 	else if (option == 3)
 	{
 		mainMenu();
@@ -292,12 +302,13 @@ void UserInterface::add()
 	}
 
 }
-
+//funtion for customize travel package and customer data
 void UserInterface::customize()
 {
 
 	int x;
 	string StringX;
+	//Interface for customize data menu
 	while (true)
 	{
 		cout << "=================================" << endl;
@@ -315,20 +326,25 @@ void UserInterface::customize()
 		}
 		catch (const std::exception&){
 		}
+		// to add a package
 		if (x == 1) {
 			add();
 		}
+		// to edit a package or traveler
 		else if (x == 2) {
 			editMenu();
 		}
+		// to delete a packafe or traveler
 		else if (x == 3) {
 			deleteMenu();
 		}
+		// to back to main menu
 		else if (x == 4)
 		{
 			mainMenu();
 			return;
 		}
+		// error message when innapropriate input
 		else
 		{
 			cout << "Inappropriate input" << endl;
@@ -337,7 +353,7 @@ void UserInterface::customize()
 
 }
 
-
+// function to lower string
 void UserInterface::toLowering(string &tolowered)
 {
 	for (int  i = 0; i < tolowered.size(); i++)
@@ -350,7 +366,7 @@ UserInterface::UserInterface()
 	functionController.readFile();
 	activePack = NULL;
 }
-
+// function to validate item which contains of string and key
 bool UserInterface::ValidateItem(string& content,string key)
 {
 	if (key == "codeName")
@@ -419,7 +435,7 @@ bool UserInterface::ValidateItem(string& content,string key)
 	else return false;
 
 }
-
+//functuon to validate number
 bool UserInterface::ValidateNumber(const int& content, string key)
 {
 	if (key == "price")
@@ -440,7 +456,7 @@ bool UserInterface::ValidateNumber(const int& content, string key)
 	else return false;
 
 }
-
+// function to set a format for a description
 string UserInterface::FormattingDesc(string desc)
 {
 	string ret = "";

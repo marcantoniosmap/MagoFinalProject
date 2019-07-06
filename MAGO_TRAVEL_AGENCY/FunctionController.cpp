@@ -21,14 +21,15 @@ int FunctionController::packageCount(int hashIndex)
 	return TravelPackData[hashIndex].size();
 }
 
-
+//function to add a new travel pack
 void FunctionController::addNewItem(TravelPack p,int HashIndex)
 {
 	TravelPackData[HashIndex].push_back(p);
 }
-
+//function to search travel pack using code
 void FunctionController::searchCode(string searchCode)
 {
+	//userinterface for search travel pack function
 	int hash = searchCode[0]% hashNum;
 	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 	cout << "			ALL EXISTING PACKAGE" << endl;
@@ -44,7 +45,7 @@ void FunctionController::searchCode(string searchCode)
 	}
 	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 }
-
+//function to search travel pack using keyword
 void FunctionController::searchKeyword(string searchKey)
 {
 	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
@@ -64,7 +65,7 @@ void FunctionController::searchKeyword(string searchKey)
 	}
 	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 }
-
+//function to search travel pack by date
 void FunctionController::searchDate(string date)
 {
 	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
@@ -84,7 +85,7 @@ void FunctionController::searchDate(string date)
 	}
 	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 }
-
+//function to search customer using all name
 void FunctionController::searchAllName(string customerName)
 {
 	cout << "----------------------------------------------------------------------------------------------------------" << endl;
@@ -106,7 +107,7 @@ void FunctionController::searchAllName(string customerName)
 	}
 	cout << "---------------------------------------------------------------------------------------------" << endl;
 }
-
+//function to search customer by nationality
 void FunctionController::searchNationality(string nationality)
 {
 	cout << "---------------------------------------------------------------------------" << endl;
@@ -128,7 +129,7 @@ void FunctionController::searchNationality(string nationality)
 	}
 	cout << "---------------------------------------------------------------------------" << endl;
 }
-
+//function to list all customer
 void FunctionController::listAllCustomer(TravelPack *active)
 {
 	cout << "---------------------------------------------------------------------------" << endl;
@@ -146,7 +147,7 @@ void FunctionController::listAllCustomer(TravelPack *active)
 	cout << "---------------------------------------------------------------------------" << endl;
 }
 
-
+//function to list all travelpack
 void FunctionController::ListComplete(TravelPack *active)
 {
 	cout << "-------------------------------------------------------------------------------------------" << endl;
@@ -165,6 +166,7 @@ void FunctionController::ListComplete(TravelPack *active)
 	}
 	cout << "---------------------------------------------------------------------------" << endl;
 }
+//function to list similar pack
 void FunctionController::listSimilar(TravelPack *active)
 {
 	cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
@@ -184,7 +186,7 @@ void FunctionController::listSimilar(TravelPack *active)
 
 }
 
-
+//function to read txt file.
 void FunctionController::myReplace(string& str, const string& oldStr, const string& newStr)
 {
 	string::size_type pos = 0u;
@@ -251,7 +253,7 @@ void FunctionController::readFile()
 		
 	}
 }
-
+//function to save all changes that have been made and save it into a txt file
 void FunctionController::writeFile()
 {
 	ofstream file("TravelP.txt");
@@ -328,7 +330,7 @@ void FunctionController::writeFile()
 	}
 	
 }
-
+//function to delete travel pack
 bool FunctionController::deletePack(string codeDelete)
 {
 	int position = codeDelete[0] %hashNum;
@@ -342,7 +344,7 @@ bool FunctionController::deletePack(string codeDelete)
 	}
 	return false;
 }
-
+//function to print existing pack
 void FunctionController::printExistingPack()
 {
 	int count = 1;
@@ -361,7 +363,7 @@ void FunctionController::printExistingPack()
 	}
 
 }
-
+//function to printview
 void FunctionController::printview(int hash,int index)
 {
 		cout << "||"  << setw(15) << TravelPackData[hash][index].getCode() << "||" << setw(50) << TravelPackData[hash][index].getPackName() << "||"

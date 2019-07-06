@@ -6,6 +6,7 @@ using namespace std;
 
 struct Node
 {
+	//node that store customers' data
 	customer customerList;
 	Node* link;
 	Node* prev;
@@ -15,15 +16,18 @@ struct Node
 class customerDataLL
 {
 private:
+//the pointers of node
 	Node* head;
 	Node* tail;
 	Node* current;
 	
 public:
+//construtors
 	const Node* itterate;
 	customerDataLL();
 	~customerDataLL();
 	customer* get(int i);
+	//list of funtions
 	void empty();
 	int CustomerCount();
 	void AddNewCustomer(customer addNew);

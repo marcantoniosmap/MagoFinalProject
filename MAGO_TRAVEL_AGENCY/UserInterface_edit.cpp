@@ -2,12 +2,13 @@
 
 #include "UserInterface.h"
 
-
+//function to edit active package, traveler data or set the activated package
 void UserInterface::editMenu()
 {
 	system("cls");
 	bool run = true;
 	string bIString;
+	// edit menu interface
 	while (run)
 	{
 		int bookInput;
@@ -27,11 +28,13 @@ void UserInterface::editMenu()
 		catch (exception) { bookInput = 0; }
 		switch (bookInput)
 		{
+			// to edit active package
 			case 1:
 			{
 				editItem();
 				break;
 			}
+			// to edit traveler data
 			case 2:
 			{
 				int yesNoUserInput;
@@ -68,6 +71,7 @@ void UserInterface::editMenu()
 									cin >> edit;
 									switch (edit)
 									{
+										// to edit first name of customer data
 									case 1:
 									{
 										string fName;
@@ -88,6 +92,7 @@ void UserInterface::editMenu()
 										}
 										break;
 									}
+									// to edit last name of customer data
 									case 2:
 									{
 										string LName;
@@ -108,6 +113,7 @@ void UserInterface::editMenu()
 										}
 										break;
 									}
+									//to edit the citizenship of customer data
 									case 3:
 									{
 										string citizenship;
@@ -128,6 +134,7 @@ void UserInterface::editMenu()
 										}
 										break;
 									}
+									// to edit the price
 									case 4:
 									{
 										int newPrice;
@@ -148,6 +155,7 @@ void UserInterface::editMenu()
 										}
 										break;
 									}
+									// to exit from the menu
 									case 5:
 									{
 										run = false;
@@ -178,11 +186,13 @@ void UserInterface::editMenu()
 				break;
 				break;
 			}
+			// to set the activated package
 			case 3:
 			{
 				searchTravelPackages();
 				break;
 			}
+			//to  exit from from edit menu
 			case 4:
 			{
 				customize();
@@ -197,7 +207,7 @@ void UserInterface::editMenu()
 	}
 
 }
-
+//function to edit travel package
 void UserInterface::editItem()
 {
 	if (activePack == NULL)
@@ -208,6 +218,7 @@ void UserInterface::editItem()
 	int inp;
 	string StringInp;
 	bool run = true;
+	//userinterace to edit the chosen package
 	while (run)
 	{
 		system("cls");
@@ -236,6 +247,7 @@ void UserInterface::editItem()
 			bool run2 = true;
 			int attributes;
 			string attributesString;
+			//userinterface when user want to edit the package
 			while (run2)
 			{
 
@@ -258,6 +270,7 @@ void UserInterface::editItem()
 				catch (const std::exception&) {}
 				switch (attributes)
 				{
+				// to edit package code
 				case 1:
 				{
 					string packCode;
@@ -303,6 +316,7 @@ void UserInterface::editItem()
 					}
 					break;
 				}
+				// to edit package name
 				case 2:
 				{
 					string packName;
@@ -322,6 +336,7 @@ void UserInterface::editItem()
 					}
 					break;
 				}
+				// to edit package price
 				case 3:
 				{
 					int price;
@@ -363,6 +378,7 @@ void UserInterface::editItem()
 						else cout << "Not inappropriate price Name" << endl;
 					}
 					break;
+					//to edit package date
 				}case 4:
 				{
 					string date;
@@ -379,6 +395,7 @@ void UserInterface::editItem()
 						else cout << "Not inappropriate Date Name" << endl;
 					}
 					break;
+					// to edit package availability
 				}case 5:
 				{
 					int availability;
@@ -399,6 +416,7 @@ void UserInterface::editItem()
 						else cout << "Not inappropriate Availability" << endl;
 					}
 					break;
+					// to edit package description
 				}case 6:
 				{
 					string desc;
@@ -419,6 +437,7 @@ void UserInterface::editItem()
 						else cout << "Not inappropriate description" << endl;
 					}
 					break;
+					// to finish the edit and exit
 				}case 7:
 				{
 					editMenu();
@@ -434,6 +453,7 @@ void UserInterface::editItem()
 
 			}
 		}
+		//to exit
 		else if (inp == 2)
 		{
 			editMenu();
@@ -448,12 +468,13 @@ void UserInterface::editItem()
 
 	}
 }
-
+// function to delete package
 void UserInterface::deleteMenu()
 {
 	int x;
 	string StringX;
 	bool run = true;
+	// userinterface of delete menu
 	while (run)
 	{
 		cout << "===============================" << endl;
@@ -472,11 +493,13 @@ void UserInterface::deleteMenu()
 		catch (const std::exception&) { x = 0; }
 		switch (x)
 		{
+			//to delete active package
 		case 1:
 		{
 			deleteItem();
 			break;
 		}
+		// to delete traveler data
 		case 2:
 		{
 			int yesNoUserInput;
@@ -544,11 +567,13 @@ void UserInterface::deleteMenu()
 			break;
 			
 		}
+		// set the activated package
 		case 3:
 		{
 			searchTravelPackages();
 			break;
 		}
+		//to exit to main menu
 		case 4:
 		{
 			customize();
@@ -562,7 +587,7 @@ void UserInterface::deleteMenu()
 	
 	}
 }
-
+// function when user proceed to delete the package
 void UserInterface::deleteItem()
 {
 	
@@ -596,6 +621,7 @@ void UserInterface::deleteItem()
 	{
 		inp = 0;
 	}
+	//to delete the whole entire package
 	if (inp==1)
 	{
 		if (functionController.deletePack(activePack->getCode()))

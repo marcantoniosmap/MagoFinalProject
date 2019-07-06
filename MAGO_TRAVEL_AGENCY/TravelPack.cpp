@@ -68,6 +68,7 @@ string TravelPack::getCode()
 {
 	return Pcode;
 }
+
 string TravelPack::getAlphaCode()
 {
 	string alpha;
